@@ -1,0 +1,1996 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #151515;
+    border-radius: 3px;
+}
+
+body {
+  margin:0;
+  padding:0;  
+  background: url("/assets/images/bgs/bg-challenges-mask.png") repeat !important;
+  color:#fff;
+}
+
+/* iphone X , XS, 11 Pro */
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) { 
+body {
+  background: #000 url("/assets/images/bgs/bg-challenges.png") repeat !important;
+    -ms-zoom: 0.80;
+    -moz-transform: scale(0.80);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.80);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.80);
+    -webkit-transform-origin: 0 0;
+}
+}
+       /* iphone XS Max, 11 Pro Max */
+@media only screen and (min-device-width : 414px) and (max-device-height : 896px){ 
+body {
+  background: #000 url("/assets/images/bgs/bg-challenges.png") repeat !important;
+    -ms-zoom: 0.84;
+    -moz-transform: scale(0.84);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.84);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.84);
+    -webkit-transform-origin: 0 0;
+}
+}
+/* iphone 12 Pro Max */
+@media only screen and (min-device-width : 428px) and (max-device-height : 926px)  { 
+body {
+  background: #000 url("/assets/images/bgs/bg-challenges.png") repeat !important;
+    -ms-zoom: 0.85;
+    -moz-transform: scale(0.85);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.85);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.85);
+    -webkit-transform-origin: 0 0;
+}
+}
+
+
+
+h1 {
+    font-size: 14px
+}
+
+h2 {
+    margin: 0 0 5px;
+    text-align: center;
+}
+
+
+h3 {
+    text-align: center;
+    font-size: 24px;
+    margin: 0;
+}
+
+h4 {
+    text-align: center;
+    font-size: 20px;
+    margin: 15px 0 0 0;
+}
+
+p {
+    margin: 0 !important;
+}
+
+input,
+textarea,
+select,
+.btn {
+    outline: none;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: url(../../assets/images/select_caret.png) no-repeat !important;
+    background-size: 12px !important;
+    background-position: calc(100% - 5px) center !important;
+    background-repeat: no-repeat !important;
+    background-color: #111 !important;
+	color:#333;
+	padding:5px;
+}
+
+.update-warning {
+    width: 100%;
+    background: #800000;
+    color: #eee;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    z-index: 9909;
+    display: none;
+    /* When the time comes, you gotta run and change this to block. This is a warning. */
+}
+
+#main-header {
+    display: flex;
+    margin: 10px;
+}
+
+#main-header::after {
+    clear: both;
+}
+
+#main-header-center {
+    flex-grow: 1;
+    height: 75px;
+    background-image: url(../../assets/images/header_bg_center.png);
+    background-repeat: repeat-x;
+    background-size: auto 75px;
+    padding: 6px 0;
+}
+
+#main-header-center>span {
+    font-family: RDRLino, serif;
+    font-weight: normal;
+    font-size: 36px;
+    line-height: 64px;
+}
+
+#main-header-left,
+#main-header-right {
+    user-select: none;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10+ and Edge */
+    height: 75px;
+}
+
+#sub-header {
+    font-size: 14px;
+    color: #cacaca;
+}
+
+.header {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    position: relative;
+    margin: 12px 0;
+}
+
+.header-title {
+    -webkit-box-flex: 0;
+    flex: 0 1 auto;
+    line-height: normal;
+    margin: 0 12px;
+    text-align: center;
+}
+
+.header-border {
+    -webkit-box-flex: 1;
+    flex: 1 0 auto;
+    min-width: 40px;
+    position: relative;
+}
+
+.header-border:after {
+    background-image: url(../../assets/images/header_border_divider.png);
+    background-repeat: repeat-x;
+    background-size: auto 3px;
+    top: 18px;
+    content: " ";
+    height: 3px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+
+.menu-divider {
+    height: 3px;
+    border: none;
+    background-image: url(../../assets/images/header_border_white.png);
+    background-repeat: repeat-x;
+    background-size: auto 3px;
+    margin: 6px auto;
+    opacity: 0.15;
+}
+
+.filter-alert {
+    position: absolute;
+    z-index: 990;
+    text-align: center;
+    cursor: pointer;
+    background-image: url(../images/menu_roller_on.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    color: #fff;
+    padding: 10px 25px;
+    text-align: center;
+}
+
+@media (max-width: 1024px) {
+
+    .filter-alert {
+        left: 2px;
+        right: 2px;
+        bottom: 2px;
+    }
+}
+
+@media (min-width: 1025px) {
+
+    .filter-alert {
+        left: 50%;
+        transform: translate(-50%, -50%);
+        bottom: 0;
+    }
+}
+
+.filter-alert .close-button {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    font-size: 27px;
+    border: none;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+}
+
+.top-widget {
+    z-index: 1010;
+    position: fixed;
+    left: 40px;
+    top: 3px;
+    height: 34px;
+    width: 130px;
+    background-image: url(../../assets/images/timer_bg.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 5px;
+    color: #fff;
+    text-align: center;
+    user-select: none;
+    transition: all 200ms ease-out;
+}
+
+.top-widget>* {
+    display: inline-block;
+    line-height: 18px;
+}
+
+.top-widget>p {
+    margin-right: 2px !important;
+    cursor: pointer;
+}
+
+#day-cycle {
+    margin-top: -2px;
+    width: 16px;
+    height: 16px;
+    border:none;
+}
+
+.white-line-divider {
+    margin: 15px 0 2px 0;
+    height: 10px;
+    background-image: url(../../assets/images/header_border_divider.png);
+    background-repeat: repeat-x;
+    background-size: auto 3px;
+}
+
+.save-button,
+.remove-button {
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+    margin-top: 8px;
+}
+
+
+.settings-container {
+    padding: 0 10px;
+    /*margin: 5px 0;*/
+	margin:5px;
+}
+
+.input-search {
+    background-color: #383838;
+    border: none;
+    padding: 5px;
+    color: #f0f0f0;
+    font-size: 14px;
+    width: 100%;
+    border-radius: 3px;
+}
+
+.input-file {
+    background-image: url(../images/menu_highlight.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: none;
+    padding: 6px 16px;
+    color: #f0f0f0;
+    font-size: 14px;
+    border-radius: 3px;
+}
+
+.input-container {
+    position: relative;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    padding:0 0 2px 0;
+}
+
+.input-container-noflex {
+    user-select: none;
+    margin: 5px 0 0 0;
+    text-align: center;
+}
+
+.input-container-noflex .btn {
+    margin: 6px 0;
+}
+
+.btn-default {
+    background-color: #383838;
+    min-width: 40%;
+    font-weight: 500;
+    color: #fff;
+    border: 1px solid #999;
+}
+
+.input-text {
+    background: #383838;
+    border: none;
+    padding: 4px 10px;
+    color: #f0f0f0;
+    font-size: 13px;
+    height: 100%;
+    border-radius: 3px;
+    margin-left: 6px;
+    text-overflow: ellipsis;
+}
+
+.input-container-noflex .input-text {
+    margin-left: 0;
+}
+
+.input-text:disabled {
+    cursor: not-allowed;
+}
+
+.input-checkbox-wrapper .input-checkbox+.input-checkbox-label, .input-text, .input-action {
+        margin-top: 5px;
+    }
+
+
+
+.input-container label {
+    line-height: 24px;
+    width: 100%;
+    text-align: left;
+    margin:9px 0 0 0;
+}
+
+
+/* Custom checkbox styling */
+
+.input-checkbox-wrapper {
+    display: inline-block;
+    min-width: 28px;
+    height: 28px;
+    margin-left: 6px;
+}
+
+.input-checkbox-wrapper .input-checkbox {
+    display: none;
+}
+
+.input-checkbox-wrapper .input-checkbox-label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-image: url(../images/selection_boxes.png);
+    background-position: left center;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    cursor: pointer !important;
+}
+
+.input-checkbox-wrapper .input-checkbox:checked+.input-checkbox-label {
+    background-position: right center;
+}
+
+.input-checkbox-wrapper .input-checkbox:disabled+.input-checkbox-label {
+    cursor: not-allowed !important;
+}
+
+
+/* Custom action button styling */
+
+.input-container,
+.input-container label {
+    cursor: pointer !important;
+}
+
+.input-container.disabled,
+.input-container.disabled label {
+    cursor: not-allowed !important;
+}
+
+.input-action {
+    display: inline-block;
+    min-width: 28px;
+    height: 28px;
+    background-image: url(../images/action_indicator.png);
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    margin-left: 6px;
+}
+
+.input-action.external {
+    background-image: url(../images/action_indicator_external.png) !important;
+}
+
+.input-action-copy,
+.input-action-clear {
+    width: 30px;
+    background-size: auto 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 6px;
+    cursor: pointer;
+}
+
+.input-action-copy {
+    background-image: url(../images/action_indicator_copy.png);
+}
+
+.input-action-clear {
+    background-image: url(../images/action_indicator_clear.png);
+}
+
+.input-selection-arrow {
+    cursor: pointer;
+}
+
+.input-selection-arrow img {
+    height: 16px;
+    width: auto;
+}
+
+a.no-style {
+    color: #fff;
+    text-decoration: none;
+}
+
+a.no-style:hover {
+    color: #fff;
+}
+
+a.no-style:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Donate form */
+
+.donate-form {
+    margin: 5px 5px;
+    display: flex;
+    justify-content: space-between;
+    background-image: url(../images/menu_donate.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 10px;
+}
+
+.donate-form-daily {
+    margin: 5px 5px;
+    display: flex;
+    justify-content: space-between;
+    background-image: url(../images/menu_donate.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 10px;
+    width:360px;
+}
+
+.donate-form .input-text {
+    margin: auto 0 auto auto;
+}
+
+
+/* Freemode Events */
+
+#fme-container {
+    position: absolute;
+    left: 10px;
+    top: 55px;
+    z-index: 990;
+    user-select: none;
+    transition: all 200ms ease-out;
+}
+
+#fme-container.fme-menu-opened {
+    left: 405px;
+}
+
+#fme-container .fme-card {
+    display: flex;
+    align-items: center;
+    background-image: url(../../assets/images/fme_background.png);
+    background-size: 100% 100%;
+    padding: 25px;
+    width: 445px;
+    max-width: 445px;
+    color: #fff;
+}
+
+#fme-container .fme-card .fme-image {
+    margin-right: 12px;
+    height: 66px;
+}
+
+#fme-container .fme-card .fme-body {
+    flex-grow: 1;
+}
+
+#fme-container .fme-card .fme-body .fme-title {
+    font-family: RDRLino, serif;
+    color: #7b66af;
+    margin: 0;
+    text-align: left;
+    font-size: 24px;
+    line-height: 1;
+}
+
+#fme-container .fme-card .fme-body .fme-text {
+    margin: 0;
+    text-align: left;
+    font-size: 18px;
+}
+
+#fme-container .fme-card #next-general-mobile,
+#fme-container .fme-card #next-role-mobile {
+    display: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#fme-container .fme-card .fme-body {
+    display: block;
+}
+
+@media (max-width: 1024px) {
+    #fme-container {
+        right: 50px;
+    }
+
+    #fme-container .fme-card {
+        padding: 10px 20px 10px 10px;
+        width: initial;
+    }
+
+    #fme-container .fme-card #next-general-mobile,
+    #fme-container .fme-card #next-role-mobile {
+        display: block;
+    }
+
+    #fme-container .fme-card .fme-body {
+        display: none;
+    }
+
+    #fme-container .fme-card .fme-image {
+        width: 32px;
+        height: auto;
+        margin-right: 8px;
+    }
+}
+
+.weekly-collection-wrapper {
+	margin:50px auto;
+	padding:25px;
+	background: #111;
+	width:850px;
+	min-height:400px;
+	text-align:center;
+}
+
+.weekly-collection-desc {
+  margin:25px 0px 0px 0px;
+  padding:0px;  
+  text-align: center;
+  font-size:18px;
+  font-family: HapnaSlab, serif;
+  color:#fff;
+  letter-spacing:0.8px;
+  word-spacing:0.5px;
+  line-height: 32px;
+  text-shadow: 2px 2px #000;
+}
+
+.weekly-collection-image {
+    margin-top:0px;
+    padding:0;
+	width: 800px;
+	height: 380px;
+}
+
+.weekly-collection-dailies-image {
+    margin-top:0px;
+    padding:0;
+	width: 580px;
+	height: 276px;
+}
+
+.date-input-container-label {
+  margin:2px 2px 2px 12px;
+  padding:3px;
+  height:50px;
+  min-width:30px;
+  font-family: RDRLino, serif;
+  font-size:21px;
+  letter-spacing:1.4px;
+  text-align: center;
+  line-height:44px;
+  
+}
+.date-input-container-label-left {
+  margin:2px 4px;
+  padding:0px;  
+  height:40px;
+  min-width:222px;
+  text-align: left;
+  font-size:18px;
+  font-family: HapnaSlab, serif;
+  color:#fff;
+  letter-spacing:0.8px;
+  word-spacing:0.5px;
+  line-height: 48px;
+  text-shadow: 2px 2px #000;
+}
+.date-input-container-label-right {
+  margin:2px 4px;
+  padding:0px;  
+  height:40px;
+  min-width:222px;
+  text-align: left;
+  font-size:18px;
+  font-family: HapnaSlabBold, serif;
+  color:#fff;
+  letter-spacing:0.8px;
+  word-spacing:0.5px;
+  line-height: 48px;
+  text-shadow: 2px 2px #000;
+}
+
+.challenges-wrapper {
+	margin:0px auto;
+	padding:10px;
+	background: #050505 url('/assets/images/daily-challenges/bg-challenges.png');
+	width:600px;
+}
+
+.challenges-wrapper-map {
+	margin:0px;
+	padding:50px 10px 10px 10px;
+	 background: #000 url("/assets/images/bgs/bg-challenges.png") repeat !important;
+	width:600px;
+    -ms-zoom: 0.92;
+    -moz-transform: scale(0.92);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.92);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.92);
+    -webkit-transform-origin: 0 0;	
+}
+
+/* iphone X , XS, 11 Pro */
+@media only screen and (min-device-width: 375px) and (max-device-height: 812px) { 
+.challenges-wrapper {
+    -ms-zoom: 0.80;
+    -moz-transform: scale(0.80);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.80);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.80);
+    -webkit-transform-origin: 0 0;
+}
+}
+       /* iphone XS Max, 11 Pro Max */
+@media only screen and (min-device-width : 414px) and (max-device-height : 896px){ 
+.challenges-wrapper {
+    -ms-zoom: 0.84;
+    -moz-transform: scale(0.84);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.84);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.84);
+    -webkit-transform-origin: 0 0;
+}
+}
+/* iphone XS Max, 11 Pro Max */
+@media only screen and (min-device-width : 428px) and (max-device-height : 926px)  { 
+.challenges-wrapper {
+    -ms-zoom: 0.84;
+    -moz-transform: scale(0.84);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.84);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.84);
+    -webkit-transform-origin: 0 0;
+}
+}
+
+#challenges-header {
+    display: flex;
+    margin: 12px;
+	background: #000;
+}
+
+#challenges-header::after {
+    clear: both;
+	
+}
+
+#challenges-header-center {
+    flex-grow: 1;
+    height: 80px;
+    background-image: url(../../assets/images/header_bg_center.png);
+    background-repeat: repeat-x;
+    background-size: auto 80px;
+    padding: 10px 0;
+}
+
+#challenges-header-center>span {
+    font-family: RDRLino, serif;
+    font-weight: normal;
+    font-size: 52px;
+	text-transform: uppercase;
+    line-height: 66px;
+	letter-spacing: 1px;
+	word-spacing: 1px;
+}
+
+#challenges-header-left,
+#challenges-header-right {
+    user-select: none;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10+ and Edge */
+    height: 80px;
+}
+
+#challenges-sub-header {
+    font-size: 14px;
+    color: #cacaca;
+}
+
+.challenges-header-wrap {
+	margin:0px;
+	padding:0px;
+	background: url(../../assets/images/menu_header_1a.png) no-repeat;
+	
+	height:110px;
+	background-size: 100% 100%;
+	
+}
+
+.challenges-header-wrap-title {
+	margin:0px;
+	padding:0px;
+	font-family: RDRLino, serif;
+    font-weight: normal;
+    font-size: 54px;
+	text-transform: uppercase;
+    line-height: 68px;
+}
+
+.challenges-header {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    position: fixed;
+	top:0px;
+}
+
+.challenges-header-title {
+    -webkit-box-flex: 0;
+    flex: 0 1 auto;
+    line-height: normal;
+    margin: 0 12px;
+    text-align: center;
+}
+
+.challenges-header-border {
+    -webkit-box-flex: 1;
+    flex: 1 0 auto;
+    min-width: 40px;
+    position: relative;
+}
+
+.challenges-header-border:after {
+    background-image: url(../../assets/images/header_border_divider.png);
+    background-repeat: repeat-x;
+    background-size: auto 3px;
+    top: 18px;
+    content: " ";
+    height: 3px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+
+
+/* WIDGETS */
+.widgets {
+  margin:0px;
+  padding:0 8px 10px 10px;
+  width:600px;
+  height:55px;
+}
+
+/* WIDGETS */
+.daily-challenge-widgets {
+  margin:0 0 0 6px;
+  padding:0;
+  width:500px;
+  height:50px;
+}
+
+.daily-challenge-widgets-date-selection {
+  margin:0 2px;
+  padding:0;
+  width:250px;
+  height:50px;
+  display:inline-flex;
+}
+
+
+.daily-challenge-widgets-selection {
+  margin:0;
+  padding:0;
+  width:400px;
+  height:50px;
+  text-align: center;
+}
+
+.daily-challenge-widgets-rdo {
+  margin:0;
+  padding:0;
+  width:480px;
+  height:30px;
+}
+
+.daily-challenges-date {
+  letter-spacing: 1px;
+  word-spacing:5px;
+  font-family: RDRLino, serif;
+  text-transform: uppercase;
+  padding:0px;
+  margin:10px 10px;	
+  font-size:22px;
+  width:300px;
+  height:25px;
+  display:inline-flex;
+  text-align:left;	
+}
+
+.widget-date-selection {
+  letter-spacing: 1px;
+  word-spacing:5px;
+  font-family: RDRLino, serif;
+  text-transform: uppercase;
+  padding:0px;
+  margin:10px 10px;	
+  font-size:22px;
+  width:6px;
+  height:25px;
+  display:inline-flex;
+  text-align:left;	
+}
+
+.daily-challenges-date-selection {
+  letter-spacing: 1.5px;
+  word-spacing:5px;
+  font-family: RDRLino, serif;
+  text-transform: uppercase;
+  padding:0;
+  margin:10px 0px;	
+  font-size:22px;
+  height:25px;
+  display:inline-flex;
+  text-align:center;	
+  
+}
+
+.date-selection-arrow {
+	margin:0px;
+	padding:0px;
+	height:18px;
+	width:18px;
+}
+
+.daily-challenges-date-selection-left {
+  letter-spacing: 1px;
+  word-spacing:5px;
+  font-family: RDRLino, serif;
+  text-transform: uppercase;
+  padding:0px;
+  margin:4px 5px;	
+  font-size:28px;
+  width:22px;
+  height:28px;
+  display:inline-flex;
+  text-align:left;	
+}
+
+.daily-challenges-date-selection-right {
+  letter-spacing: 1px;
+  word-spacing:5px;
+  font-family: RDRLino, serif;
+  text-transform: uppercase;
+  padding:0px;
+  margin:4px 5px 0px 8px;	
+  font-size:28px;
+  width:28px;
+  height:24px;
+  display:inline-flex;
+  text-align:right;	
+}
+.daily-challenges-date-selection-right-disabled {
+  letter-spacing: 1px;
+  word-spacing:5px;
+  font-family: RDRLino, serif;
+  text-transform: uppercase;
+  padding:0px;
+  margin:12px 5px 0px 8px;	
+  font-size:22px;
+  width:20px;
+  height:20px;
+  display:inline-flex;
+  text-align:right;
+  opacity: 0.5;
+}
+
+.daily-challenges-date-rdo {
+  letter-spacing: 1.6px;
+  word-spacing:6px;
+  font-family: RDRLino, serif;
+  text-transform: uppercase;
+  padding:6px 0px;
+  margin:0px;	
+  font-size:20px;
+  width:460px;
+  height:25px;
+  display:inline-block;
+  text-align:center;	
+}
+
+.daily-challenges-date-rdo a:visited,
+.daily-challenges-date-rdo a {
+    color: #fff;
+	text-decoration: none;
+    
+}
+
+.daily-challenges-date-rdo a:hover {
+    color: #fff;
+	text-decoration: none;
+}
+
+#clock-rdonline {
+  letter-spacing: 3px;
+  word-spacing:5px;
+  font-family: RDRLino, serif;
+  text-transform: uppercase;
+  font-size:24px;
+  text-align: center;
+  width:92px;
+  margin:10px 5px;	
+  
+}
+.clock-rdonline {
+  letter-spacing: 3px;
+  word-spacing:5px;
+  font-family: RDRLino, serif;
+  text-transform: uppercase;
+  font-size:24px;
+  text-align: center;
+  width:90px;
+  display:inline-flex;
+  margin:10px 5px;	
+  
+}
+
+/* ROCKSTAR GOLD #d89a2e */
+
+.daily-challenges-gold-counter {
+  letter-spacing: 1px;
+  word-spacing:5px;
+  font-family: RDRLino, serif;
+  text-transform: uppercase;
+  padding:0px;
+  margin:0 0 0 15px;
+  font-size:24px;
+  width:30px;
+  height:25px;
+  text-align:left;
+  display:inline-block;
+}
+
+.daily-challenges-gold {
+  letter-spacing: 1px;
+  word-spacing:5px;
+  font-family: RDRLino, serif;
+  text-transform: uppercase;
+  padding:0px;
+  margin:0px 8px 0px 8px;
+  font-size:26px;
+  width:70px;
+  height:25px;
+  text-align:left;
+  display:inline-block;
+  color:#daa520;
+}
+
+.daily-challenges-gold-icon {
+    width: 32px;
+    margin-top:-15px;
+    padding:0;
+}
+
+.daily-challenges-counter {
+  letter-spacing: 1px;
+  word-spacing:5px;
+  font-family: RDRLino, serif;
+  text-transform: uppercase;
+  padding:0px;
+  margin:0px;
+  font-size:18px;
+  width:50px;
+  height:25px;
+  text-align:right;
+  display:inline-block;
+}
+
+.daily-challenges-counter-icon {
+    width: 50px;
+    margin-top:-10px;
+    padding:0;
+}
+
+.daily-challenges-counter-widget-icon {
+    height: 22px;
+	width: 22px;
+    margin:0px;
+    padding:0;
+}
+
+.challenges-divider {
+  height: 5px;
+  width: 560px;
+  border: none;
+  background-image: url(../images/daily-challenges/header_border_white.png);
+  background-repeat: repeat-x;
+  background-size: auto 3px;
+  margin: 5px 10px;
+  padding:0px;
+  opacity: 0.25;
+  text-align: center;
+}
+
+.challenges-title-container {
+  position: relative;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  margin:2px 4px;
+  padding:0 4px;
+  width:560px;
+  text-align: left;
+
+}
+
+.challenges-title-container-icon {
+  margin:0px 8px;
+  padding:0;
+  width:38px;
+  height:38px;
+
+}
+
+.challenges-title {
+  margin:5px;
+  padding:0;
+  width:440px;
+  text-transform: uppercase;
+  letter-spacing:1.2px;
+  word-spacing:5px;
+  font-family: RDRLino, serif;
+  font-size:24px;
+  line-height:34px;
+}
+
+
+.challenges-title-text {
+  margin:0;
+  padding:0;
+}
+
+.challenges-container {
+	width:600px;
+	margin:16px;
+}
+
+
+.challenges-container-divider {
+  height: 4px;
+  width: 560px;
+  border: none;
+  background-image: url(../images/daily-challenges/header_border_white.png);
+  background-repeat: repeat-x;
+  background-size: auto 3px;
+  margin: 25px 10px;
+  padding:0px;
+  opacity: 0.35;
+  text-align: center;
+}
+
+.challenges-title-rdo-container {
+  position: relative;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  margin:16px 0 9px 0;
+  padding:0;
+  width:100%;
+  text-align: left;
+
+}
+
+.challenges-title-rdo-container-icon {
+  margin:0px 8px;
+  padding:0;
+  width:32px;
+  height:32px;
+
+}
+
+
+.challenges-title-rdo {
+  margin:6px 6px;
+  padding:0;
+  width:400px;
+  text-transform: uppercase;
+  letter-spacing:1.0px;
+  font-family: RDRLino, serif;
+  font-size:18px;
+
+}
+
+
+.challenges-title-rdo-text- {
+  margin:0;
+  padding:0;
+}
+
+.challenge-input-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin:5px 10px;
+  padding:0;
+  background-image: url(../images/bgs/achivement-bg-10.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height:50px;
+  width:560px;
+}
+
+.challenge-input-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin:5px 10px;
+  padding:0;
+  background-image: url(../images/bgs/achivement-bg-10.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height:50px;
+  width:560px;
+}
+
+
+.challenge-input-container-org {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin:4px 10px;
+  padding:0;
+   /*background-color:#1E7704;*/
+  background-image: url(../images/bgs/challenge_bg.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height:50px;
+  width:560px;
+}
+
+.challenge-input-container-cinput-container-complete {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin:8px 0px 0px 2px;
+  padding:0;
+   /*background-color:#1E7704;*/
+  background-image: url(../images/bgs/challenge_bg.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height:50px;
+  width:560px;
+}
+
+.challenge-input-container .icon {
+  margin:8px 0px 10px 6px;
+  padding:4px;
+  height:28px;
+  width:28px;
+  
+}
+.challenge-goal {
+  margin:2px 2px 2px 12px;
+  padding:3px;
+  height:50px;
+  min-width:30px;
+  font-family: RDRLino, serif;
+  font-size:21px;
+  letter-spacing:1.4px;
+  text-align: center;
+  line-height:44px;
+  
+}
+
+.general-challenges-completed, .role-challenges-completed {
+  font-size:14.8px;
+  font-family: HapnaSlab, serif;
+  color:#fff;
+  letter-spacing:0.6px;
+  word-spacing:0.3px;
+  line-height: 44px;
+  text-shadow: 2px 2px #000;  
+}
+
+.challenge-input-container-label {
+  margin:2px 4px;
+  padding:0px;  
+  height:40px;
+  min-width:444px;
+  text-align: left;
+  font-size:14.5px;
+  font-family: HapnaSlab, serif;
+  color:#fff;
+  letter-spacing:0.6px;
+  word-spacing:0px;
+  line-height: 46px;
+  text-shadow: 2px 2px #000;
+}
+
+.challenge-input-container-gold-label {
+  margin:2px 4px;
+  padding:0px;  
+  height:40px;
+  width:350px;
+  text-align: left;
+  font-size:14.8px;
+  font-family: HapnaSlabLight, serif;
+  color:#fff;
+  letter-spacing:0.6px;
+  word-spacing:0.3px;
+  line-height: 44px;
+  text-shadow: 2px 2px #000;
+}
+
+.challenge-input-container-label-complete {
+  margin:2px 4px;
+  padding:0px;  
+  height:40px;
+  width:500px;
+  text-align: left;
+  font-size:14.8px;
+  font-family: HapnaSlab, serif;
+  color:#fff;
+  letter-spacing:0.6px;
+  word-spacing:0.3px;
+  line-height: 44px;
+  text-shadow: 2px 2px #000;
+  text-decoration: line-through;
+}
+
+.general-challenge-input-container-label-01, 
+.general-challenge-input-container-label-02, 
+.general-challenge-input-container-label-02, 
+.general-challenge-input-container-label-03, 
+.general-challenge-input-container-label-04, 
+.general-challenge-input-container-label-05, 
+.general-challenge-input-container-label-06, 
+.general-challenge-input-container-label-07 {
+  margin:2px 4px;
+  padding:0px;  
+  height:40px;
+  width:500px;
+  text-align: left;
+  font-size:14.8px;
+  font-family: HapnaSlab, serif;
+  color:#fff;
+  letter-spacing:0.6px;
+  word-spacing:0.3px;
+  line-height: 44px;
+  text-shadow: 2px 2px #000;
+}
+
+.general-challenge-input-container-label-02 .complete  {
+ text-decoration: line-through;
+}
+
+.challenge-input-container-label-org {
+  margin:2px 4px;
+  padding:0px;  
+  height:40px;
+  width:480px;
+  text-align: left;
+  font-size:16px;
+  font-family: HapnaSlab, serif;
+  color:#fff;
+  letter-spacing:0.6px;
+  word-spacing:0.1px;
+  line-height: 44px;
+  text-shadow: 2px 2px #000;
+}
+
+.challenge-input-container-label .complete {
+  margin:2px 4px;
+  padding:0px;  
+  height:40px;
+  width:480px;
+  text-align: left;
+  font-size:16px;
+  font-family: HapnaDemiBold, serif;
+  color:#fff;
+  letter-spacing:0.6px;
+  word-spacing:0.1px;
+  line-height: 44px;
+  text-shadow: 2px 2px #000;
+  opacity: 0.2;
+  text-decoration: line-through;
+}
+
+
+.challenge-input-container-rdo {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin:1px 0px 4px 0px;
+  padding:0;
+   /*background-color:#1E7704;*/
+  background-color:000;
+  background-image: url(../images/bgs/challenge_bg.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height:40px;
+  width:100%;
+  color:#fff;
+}
+
+.challenge-input-container-rdo-text {
+  position: relative;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  margin:0px 0px 4px 0px;
+  padding:0;
+   /*background-color:#1E7704;*/
+  background-color:#000;
+  background-image: url(../images/daily-challenges/achivement_bg.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height:40px;
+  width:100%;
+  text-align: center;
+}
+
+
+.challenge-input-container-rdo .icon {
+  margin:5px 0px 10px 6px;
+  padding:4px;
+  height:28px;
+  width:28px;  
+}
+
+.challenge-goal-rdo {
+  margin:5px 6px 10px 12px;
+  padding:4px;
+  height:32px;
+  width:26px;
+  font-family: RDRLino, serif;
+  font-size:19px;
+  text-align: center;
+  
+}
+
+.challenge-input-container-rdo-label {
+  margin:10px 2px 0px 2px;
+  padding:0px;  
+  height:32px;
+  width:440px;
+  text-align: left;
+  font-size:14.2px;
+  font-family: HapnaDemiBold, serif;
+  font-weight:500;
+  letter-spacing:0.6px;
+  word-spacing:0.4px;
+  text-shadow: 2px 2px #000;
+  color:#FFF;
+}
+
+.challenge-input-container-rdo-label-text {
+  margin:9px 0px 0px 4px;
+  padding:0px;  
+  height:2px;
+  width:460px;
+  text-align: center;
+  font-size:15px;
+  font-family: HapnaDemiBold, serif;
+  letter-spacing:0.6px;
+  word-spacing:0px;
+}
+
+.challenge-input-complete {
+  display: inline-block;
+  margin:9px 20px;
+  padding:0;
+  height:32px;
+  min-width:32px;
+}
+
+.challenge-input-complete-gold {
+  display: inline-block;
+  margin:9px 20px;
+  padding:0;
+  height:32px;
+  min-width:150px;
+  text-align: right;
+}
+
+.challenge-input-complete .challenge-input-checkbox {
+  display: none;
+}
+
+.challenge-input-complete .challenge-input-checkbox-label {
+  margin:0px;
+	display: block;
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/selection_boxes.png);
+  background-position: left center;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  cursor: pointer !important;
+}
+
+.challenge-input-complete .challenge-input-checkbox:checked+.challenge-input-checkbox-label {
+  background-position: right center;
+}
+
+.challenge-input-complete .challenge-input-checkbox:disabled+.challenge-input-checkbox-label {
+  cursor: not-allowed !important;
+}
+
+.general-challenge-input-complete {
+  display: inline-block;
+  margin:9px 20px;
+  padding:0;
+  height:32px;
+  min-width:32px;
+}
+
+.general-challenge-input-complete .general-challenge-input-checkbox {
+  display: none;
+}
+
+.general-challenge-input-complete .general-challenge-input-checkbox-label {
+  margin:0px;
+	display: block;
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/selection_boxes.png);
+  background-position: left center;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  cursor: pointer !important;
+}
+
+.general-challenge-input-complete .general-challenge-input-checkbox:checked+.general-challenge-input-checkbox-label {
+  background-position: right center;
+}
+
+.general-challenge-input-complete .general-challenge-input-checkbox:disabled+.general-challenge-input-checkbox-label {
+  cursor: not-allowed !important;
+}
+
+.challenge-input-complete .challenge-input-checkbox-roles {
+  display: none;
+}
+
+.challenge-input-complete .challenge-input-checkbox-roles-label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/selection_boxes.png);
+  background-position: left center;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  cursor: pointer !important;
+}
+
+.challenge-input-complete .challenge-input-checkbox-roles:checked+.challenge-input-checkbox-roles-label {
+  background-position: right center;
+}
+
+.challenge-input-complete .challenge-input-checkbox-roles:disabled+.challenge-input-checkbox-roles-label {
+  cursor: not-allowed !important;
+}
+
+.challenge-input-complete .challenge-input-checkbox-general {
+  display: none;
+}
+
+.challenge-input-complete .challenge-input-checkbox-general-label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/selection_boxes.png);
+  background-position: left center;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  cursor: pointer !important;
+}
+
+.challenge-input-complete .challenge-input-checkbox-general:checked+.challenge-input-checkbox-general-label {
+  background-position: right center;
+}
+
+.challenge-input-complete .challenge-input-checkbox-general:disabled+.challenge-input-checkbox-general-label {
+  cursor: not-allowed !important;
+}
+
+/* CHALLENGES CONTAINERS */
+
+#general-challenges-container,#moonshiner-challenges-container,#naturalist-challenges-container,#trader-challenges-container,#collector-challenges-container,#bounty-challenges-container,#completed-challenges-container,#timers-container,#nazar-location-container,#weekly-collection-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 500ms linear;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+
+#general-challenges-container.opened,#moonshiner-challenges-container.opened,#naturalist-challenges-container.opened,#trader-challenges-container.opened,#collector-challenges-container.opened,#bounty-challenges-container.opened,#completed-challenges-container.opened,#timers-container.opened,#nazar-location-container.opened,#weekly-collection-container.opened {
+  max-height: 2000px;
+  transition: max-height 600ms linear;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+
+
+/* Custom checkbox styling */
+
+
+.daily-challenges-toggle-wrapper,
+.daily-challenges-toggle0-wrapper,
+.daily-challenges-toggle1-wrapper,
+.daily-challenges-toggle2-wrapper,
+.daily-challenges-toggle3-wrapper,
+.daily-challenges-toggle4-wrapper,
+.daily-challenges-toggle5-wrapper,
+.daily-challenges-toggle6-wrapper,
+.daily-challenges-toggle7-wrapper
+{
+    display: inline-block;
+    min-width: 36px;
+    height: 36px;
+    margin:0;
+}
+
+
+.daily-challenges-toggle-wrapper .daily-challenges-toggle,
+.daily-challenges-toggle0-wrapper .daily-challenges-toggle,
+.daily-challenges-toggle1-wrapper .daily-challenges-toggle,
+.daily-challenges-toggle2-wrapper .daily-challenges-toggle,
+.daily-challenges-toggle3-wrapper .daily-challenges-toggle,
+.daily-challenges-toggle4-wrapper .daily-challenges-toggle,
+.daily-challenges-toggle5-wrapper .daily-challenges-toggle,
+.daily-challenges-toggle6-wrapper .daily-challenges-toggle,
+.daily-challenges-toggle7-wrapper .daily-challenges-toggle {
+    display: none;
+}
+
+
+
+.daily-challenges-toggle-wrapper .daily-challenges-toggle-label,
+.daily-challenges-toggle0-wrapper .daily-challenges-toggle-label,
+.daily-challenges-toggle1-wrapper .daily-challenges-toggle-label,
+.daily-challenges-toggle2-wrapper .daily-challenges-toggle-label,
+.daily-challenges-toggle3-wrapper .daily-challenges-toggle-label,
+.daily-challenges-toggle4-wrapper .daily-challenges-toggle-label,
+.daily-challenges-toggle5-wrapper .daily-challenges-toggle-label,
+.daily-challenges-toggle6-wrapper .daily-challenges-toggle-label,
+.daily-challenges-toggle7-wrapper .daily-challenges-toggle-label  {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-position: left center;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    cursor: pointer !important;
+}
+
+.daily-challenges-toggle-wrapper .daily-challenges-toggle-label {
+    background-image: url(../images/daily-challenge-icons/challenge_toggle.png);
+}
+.daily-challenges-toggle0-wrapper .daily-challenges-toggle-label {
+    background-image: url(../images/daily-challenge-icons/challenge_toggle.png);
+}
+.daily-challenges-toggle1-wrapper .daily-challenges-toggle-label {
+    background-image: url(../images/daily-challenge-icons/challenge_toggle_1.png);
+}
+.daily-challenges-toggle2-wrapper .daily-challenges-toggle-label {
+    background-image: url(../images/daily-challenge-icons/challenge_toggle_2.png);
+}
+.daily-challenges-toggle3-wrapper .daily-challenges-toggle-label {
+    background-image: url(../images/daily-challenge-icons/challenge_toggle_3.png);
+}
+.daily-challenges-toggle4-wrapper .daily-challenges-toggle-label {
+    background-image: url(../images/daily-challenge-icons/challenge_toggle_4.png);
+}
+.daily-challenges-toggle5-wrapper .daily-challenges-toggle-label {
+    background-image: url(../images/daily-challenge-icons/challenge_toggle_5.png);
+}
+.daily-challenges-toggle6-wrapper .daily-challenges-toggle-label {
+    background-image: url(../images/daily-challenge-icons/challenge_toggle_6.png);
+}
+.daily-challenges-toggle7-wrapper .daily-challenges-toggle-label {
+    background-image: url(../images/daily-challenge-icons/challenge_toggle_7.png);
+}
+
+.daily-challenges-toggle-wrapper .daily-challenges-toggle:checked+.daily-challenges-toggle-label {
+	background-position: right center;
+}
+
+.daily-challenges-toggle0-wrapper .daily-challenges-toggle:checked+.daily-challenges-toggle-label,
+.daily-challenges-toggle1-wrapper .daily-challenges-toggle:checked+.daily-challenges-toggle-label,
+.daily-challenges-toggle2-wrapper .daily-challenges-toggle:checked+.daily-challenges-toggle-label,
+.daily-challenges-toggle3-wrapper .daily-challenges-toggle:checked+.daily-challenges-toggle-label,
+.daily-challenges-toggle4-wrapper .daily-challenges-toggle:checked+.daily-challenges-toggle-label,
+.daily-challenges-toggle5-wrapper .daily-challenges-toggle:checked+.daily-challenges-toggle-label,
+.daily-challenges-toggle6-wrapper .daily-challenges-toggle:checked+.daily-challenges-toggle-label,
+.daily-challenges-toggle7-wrapper .daily-challenges-toggle:checked+.daily-challenges-toggle-label {
+	background-position: right center;
+}
+
+.daily-challenges-toggle-wrapper .daily-challenges-toggle:disabled+.daily-challenges-toggle-label,
+.daily-challenges-toggle0-wrapper .daily-challenges-toggle:disabled+.daily-challenges-toggle-label,
+.daily-challenges-toggle1-wrapper .daily-challenges-toggle:disabled+.daily-challenges-toggle-label,
+.daily-challenges-toggle2-wrapper .daily-challenges-toggle:disabled+.daily-challenges-toggle-label,
+.daily-challenges-toggle3-wrapper .daily-challenges-toggle:disabled+.daily-challenges-toggle-label,
+.daily-challenges-toggle4-wrapper .daily-challenges-toggle:disabled+.daily-challenges-toggle-label,
+.daily-challenges-toggle5-wrapper .daily-challenges-toggle:disabled+.daily-challenges-toggle-label,
+.daily-challenges-toggle6-wrapper .daily-challenges-toggle:disabled+.daily-challenges-toggle-label,
+.daily-challenges-toggle7-wrapper .daily-challenges-toggle:disabled+.daily-challenges-toggle-label {
+    cursor: not-allowed !important;
+}
+
+.challenges-container-2 {
+	width:460px;
+}
+
+.challenge-position {
+  display: table-cell;
+    vertical-align: middle;
+    padding: 0 11% 0 14%;
+    width: 100%;
+    cursor: pointer;
+    background-image: url(images/challange_box.png), url(images/challange_border.png);
+    background-repeat: no-repeat;
+    background-size: contain, 100% 100%;
+    background-position-y: center;
+}
+
+
+.challenges-gold-multipler,
+.challenges-reset-timer, .naturalist-reset-timer, .moonshiner-reset-timer {
+  margin:2px 4px 2px 12px;
+  padding:3px;
+  height:32px;
+  min-width:400px;	
+  text-align: left;
+  font-size:16px;
+  font-family: HapnaSlab, serif;
+  color:#fff;
+  letter-spacing:0.6px;
+  word-spacing:0.3px;
+  line-height: 48px;
+  text-shadow: 2px 2px #000;  
+}
+
+.challenge-input-timer {
+  display: inline-block;
+  margin:9px 20px;
+  padding:0;
+  height:32px;
+  min-width:200px;
+  text-align: right;
+  font-size:16px;
+  font-family: HapnaSlab, serif;
+  color:#fff;
+  letter-spacing:0.6px;
+  word-spacing:0.3px;
+  line-height: 44px;
+  text-shadow: 2px 2px #000; 	
+}
+
+
+.reset-timers-container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin:5px 10px;
+  padding:0;
+  background-image: url(../images/bgs/achivement-bg-10.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height:50px;
+  width:560px;
+}
+
+.reset-timers-label {
+  margin:2px 4px 2px 24px;
+  padding:0px;  
+  height:40px;
+  width:240px;
+  text-align: left;
+  font-size:14.8px;
+  font-family: HapnaSlab, serif;
+  color:#fff;
+  letter-spacing:0.6px;
+  word-spacing:0.3px;
+  line-height: 44px;
+  text-shadow: 2px 2px #000;
+}
+
+.reset-timers {
+  margin:2px 4px;
+  padding:0px 24px;  
+  height:40px;
+  width:350px;
+  text-align: right;
+  font-size:14.8px;
+  font-family: HapnaSlab, serif;
+  color:#fff;
+  letter-spacing:0.6px;
+  word-spacing:0.3px;
+  line-height: 44px;
+  text-shadow: 1px 1px #000;
+}
+
+.reset-timers-block {
+  display: inline-block;
+  margin:9px 20px;
+  padding:0;
+  height:32px;
+  min-width:200px;
+  text-align: right;	
+}
+
+.timer-hours {
+	width:32px;
+	margin:0;
+	display:inline-block;
+	text-align: left;
+}
+
+.dailies-timer-hours {
+	width:42px;
+	margin:0;
+	display:inline-block;
+	text-align: left;
+}
+
+.cycles-timer-hours {
+	width:42px;
+	margin:0;
+	display:inline-block;
+	text-align: left;
+}
+
+#dailies-timer-hour, #bounty-timer-hour, #trader-timer-hour, #collector-timer-hour, #moonshiner-timer-hour, #naturalist-timer-hour {
+	width:20px;
+	display:inline-block;
+	text-align: center;
+}
+.timer-minutes {
+	width:60px;	
+	margin:0;
+	display:inline-block;
+	text-align: left;
+}
+
+#dailies-timer-minute, #bounty-timer-minute, #trader-timer-minute, #collector-timer-minute, #moonshiner-timer-minute, #naturalist-timer-minute {
+	width:20px;	
+	display:inline-block;
+	text-align: right;
+}
+.timer-seconds {
+	width:52px;
+	margin:0px;
+	display:inline-block;
+	text-align: right;
+}
+
+#dailies-timer-second, #bounty-timer-second, #trader-timer-second, #collector-timer-second, #moonshiner-timer-second, #naturalist-timer-second {
+	min-width:20px;
+	display:inline-block;
+	text-align: left;
+}
+
+.daily-challenges-settings-container {
+    padding:0 10px;
+    /*margin: 5px 0;*/
+	  margin:5px;
+    width:460px;
+}
+
+.input-container-daily-challenges-settings {
+    position: relative;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    padding:0 0 2px 0;
+    text-align: center;
+    width:100%;
+    font-family: HapnaDemiBold, serif;
+	color:#fff;
+}
+
+.daily-challenges-wide-select-menu {
+    min-width: 150px;
+    width: 150px;
+}
+
+.daily-challenges-narrow-select-menu {
+    min-width: 75px;
+    width: 75px;
+    padding:4px;
+    font-size:13.5px;
+    font-family: HapnaDemiBold, serif;
+    letter-spacing:1px;
+    word-spacing:0px;
+}
+
+.daily-challenges-small-select-menu {
+    min-width: 120px;
+    padding:3px 8px 5px 8px;
+	margin:1px 2px;
+    font-size:15px;
+    font-family: HapnaSlab, serif;
+    color:#daa520;
+    letter-spacing:0.6px;
+    word-spacing:0.3px;
+    text-shadow: 2px 2px #000;
+    border:1px solid #111;
+	text-align: right;
+}
+
+.donate-form {
+    margin: 5px 5px;
+    display: flex;
+    justify-content: space-between;
+    background-image: url(../images/menu_donate.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 10px;
+}
+
+.donate-form-daily {
+    margin: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    background-image: url(../images/menu_donate.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 10px;
+    width:560px;
+}
+
+.donate-form-daily-box {
+    margin: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    background-image: url(../images/menu_donate.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 10px;
+    width:440px;
+}
+
+.donate-form .input-text {
+    margin: auto 0 auto auto;
+}
+
+#mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9000;
+  background: #353535 url('/assets/images/daily-challenges/bg-challenges.png');
+  display: none;
+  height: 100%;
+  height: 100vh;
+}
+
+#boxes .window {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 500px;
+  height: 340px;
+  display: none;
+  z-index: 9999;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  background: #222 url('/assets/images/side-menu-bg-smaller.png');
+	
+}
+
+#boxes #dialog {
+  width: 500px;
+  height: 340px;
+  padding: 20px;
+  font-size:15px;
+  font-family: HapnaDemiBold, serif;
+  letter-spacing:1px;
+  word-spacing:0px;
+}
+
+#popupfoot {
+  font-size:16px;
+  position: absolute;
+  bottom: 0px;
+  width: 250px;
+  left: 250px;
+}

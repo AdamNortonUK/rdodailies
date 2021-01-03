@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600&display=swap');
+
+@font-face {
+    font-family: Hapna;
+    src: url('../fonts/Hapna/Hapna.eot');
+    src: url('../fonts/Hapna/Hapna.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Hapna/Hapna.woff2') format('woff2'),
+         url('../fonts/Hapna/Hapna.woff') format('woff'),
+         url('../fonts/Hapna/Hapna.ttf') format('truetype'),
+         url('../fonts/Hapna/Hapna.svg#Hapna') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: HapnaNew;
+    src: 
+      url(./fonts/HapnaNew/HapnaNew.woff2) format("woff2"),
+      url(./fonts/HapnaNew/HapnaNew.woff) format("woff"), 
+      url(./fonts/HapnaNew/HapnaNew.ttf) format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: HapnaLight;
+    src: url('../fonts/HapnaLight/HapnaLight.eot');
+    src: url('../fonts/HapnaLight/HapnaLight.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/HapnaLight/HapnaLight.woff2') format('woff2'),
+         url('../fonts/HapnaLight/HapnaLight.woff') format('woff'),
+         url('../fonts/HapnaLight/HapnaLight.ttf') format('truetype'),
+         url('../fonts/HapnaLight/HapnaLight.svg#HapnaLight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: HapnaRegular;
+    src: url('../fonts/HapnaRegular/HapnaRegular.eot');
+    src: url('../fonts/HapnaRegular/HapnaRegular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/HapnaRegular/HapnaRegular.woff2') format('woff2'),
+         url('../fonts/HapnaRegular/HapnaRegular.woff') format('woff'),
+         url('../fonts/HapnaRegular/HapnaRegular.ttf') format('truetype'),
+         url('../fonts/HapnaRegular/HapnaRegular.svg#HapnaRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: HapnaMedium;
+    src: url('../fonts/HapnaMedium/HapnaMedium.eot');
+    src: url('../fonts/HapnaMedium/HapnaMedium.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/HapnaMedium/HapnaMedium.woff2') format('woff2'),
+         url('../fonts/HapnaMedium/HapnaMedium.woff') format('woff'),
+         url('../fonts/HapnaMedium/HapnaMedium.ttf') format('truetype'),
+         url('../fonts/HapnaMedium/HapnaMedium.svg#HapnaMedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: HapnaDemiBold;
+    src: url('.fonts/HapnaDemiBold/HapnaDemiBold.eot');
+    src: url('../fonts/HapnaDemiBold/HapnaDemiBold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/HapnaDemiBold/HapnaDemiBold.woff2') format('woff2'),
+         url('../fonts/HapnaDemiBold/HapnaDemiBold.woff') format('woff'),
+         url('../fonts/HapnaDemiBold/HapnaDemiBold.ttf') format('truetype'),
+         url('../fonts/HapnaDemiBold/HapnaDemiBold.svg#HapnaDemiBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: HapnaBold;
+    src: url('../fonts/HapnaBold/HapnaBold.eot');
+    src: url('../fonts/HapnaBold/HapnaBold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/HapnaBold/HapnaBold.woff2') format('woff2'),
+         url('../fonts/HapnaBold/HapnaBold.woff') format('woff'),
+         url('../fonts/HapnaBold/HapnaBold.ttf') format('truetype'),
+         url('../fonts/HapnaBold/HapnaBold.svg#HapnaBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: HapnaExtraBold;
+    src: url('../fonts/HapnaExtraBold/HapnaExtraBold.eot');
+    src: url('../fonts/HapnaExtraBold/HapnaExtraBold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/HapnaExtraBold/HapnaExtraBold.woff2') format('woff2'),
+         url('../fonts/HapnaExtraBold/HapnaExtraBold.woff') format('woff'),
+         url('../fonts/HapnaExtraBold/HapnaExtraBold.ttf') format('truetype'),
+         url('../fonts/HapnaExtraBold/HapnaExtraBold.svg#HapnaExtraBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: RDOLino;
+    src: url('../fonts/RDOLino/RDOLino.eot');
+    src: url('../fonts/RDOLino/RDOLino.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/RDOLino/RDOLino.woff2') format('woff2'),
+         url('../fonts/RDOLino/RDOLino.woff') format('woff'),
+         url('../fonts/RDOLino/RDOLino.ttf') format('truetype'),
+         url('../fonts/RDOLino/RDOLino.svg#RDOLino') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+  font-family: RDRLino;
+  src:
+    url('../fonts/RDRLino/RDRLino.woff2') format('woff2'),
+    url('../fonts/RDRLino/RDRLino.woff') format('woff'),
+    url('../fonts/RDRLino/RDRLino.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'RedDeadLino';
+    src: url('../fonts/RedDead/RedDeadLino.ttf');
+}
+
+@font-face {
+    font-family: 'HapnaSlab';
+    src: url('../fonts/RedDead/HapnaSlabDemiBold.ttf');
+}
+@font-face {
+    font-family: 'HapnaSlabLight';
+    src: url('../fonts/RedDead/HapnaSlabLight.ttf');
+}
+@font-face {
+    font-family: 'HapnaSlabMedium';
+    src: url('../fonts/RedDead/HapnaSlabMedium.ttf');
+}
+@font-face {
+    font-family: 'HapnaSlabBold';
+    src: url('../fonts/RedDead/HapnaSlabBold.ttf');
+}
+@font-face {
+    font-family: 'HapnaSlabDemiBold';
+    src: url('../fonts/RedDead/HapnaSlabDemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Redemption';
+    src: url('../fonts/RedDead/Redemption.ttf');
+}
+
+@font-face {
+    font-family: 'RedDeadGothica';
+    src: url('../fonts/RedDead/RedDeadGothica.ttf');
+}
+
+@font-face {
+    font-family: 'RedDeadCataBold';
+    src: url('../fonts/RedDead/RedDeadCataBold.ttf');
+}
