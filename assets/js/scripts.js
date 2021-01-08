@@ -1,4 +1,4 @@
- jQuery.fn.translate = function () {
+jQuery.fn.translate = function () {
   return Language.translateDom(this);
 };
 
@@ -37,7 +37,7 @@ function init() {
   SettingProxy.addSetting(Settings, 'language', {
     default: Language.availableLanguages.includes(navLang) ? navLang : 'en',
   });
-	
+
   $("#show-general-challenges").prop('checked', Settings.showGeneralChallenges);
   $("#show-bounty-challenges").prop('checked', Settings.showBountyChallenges);
   $("#show-bounty-hunter-challenges").prop('checked', Settings.showBountyHunterChallenges);
@@ -49,8 +49,8 @@ function init() {
   $("#show-timers").prop('checked', Settings.showTimers);
   $("#show-nazar-location").prop('checked', Settings.showNazarLocation);
   $("#show-weekly-collection").prop('checked', Settings.showWeeklyCollection);
-	
-  $("#general-challenges-container").toggleClass('opened', Settings.showGeneralChallenges);	
+
+  $("#general-challenges-container").toggleClass('opened', Settings.showGeneralChallenges);
   $("#bounty-challenges-container").toggleClass('opened', Settings.showBountyChallenges);
   $("#bounty-hunter-challenges-container").toggleClass('opened', Settings.showBountyHunterChallenges);
   $("#collector-challenges-container").toggleClass('opened', Settings.showCollectorChallenges);
@@ -61,7 +61,7 @@ function init() {
   $("#timers-container").toggleClass('opened', Settings.showTimers);
   $("#nazar-location-container").toggleClass('opened', Settings.showNazarLocation);
   $("#weekly-collection-container").toggleClass('opened', Settings.showWeeklyCollection);
-	
+
   //updateTopWidget();
 }
 
@@ -72,61 +72,60 @@ function isLocalHost() {
 function clockTick() {
   'use strict';
   const now = new Date();
-  const liveTime = new Date(now);
   const gameTime = new Date(now * 30);
   gameTime.setUTCMinutes(gameTime.getUTCMinutes() - 3);
-  const realTime = new Date(now.setUTCHours(now.getUTCHours() + 0));
   const gameHour = gameTime.getUTCHours();
-  const realHour = realTime.getUTCHours();
-  const nightTime = gameHour >= 22 || gameHour < 5;
-  const nightRealTime = realHour >= 22 || realHour < 5;
   const clockFormat = {
     timeZone: 'UTC',
     hour: '2-digit',
     minute: '2-digit',
-	hourCycle:'h23'
+    hourCycle: 'h23'
   };
-  const timeFormat = {
-    timeZone: 'UTC',
-    hour: '2-digit',
-    minute: '2-digit',
-	hourCycle:'h23'  
-  };
-  
+
   $('#clock').text(gameTime.toLocaleString(Settings.language, clockFormat));
   $('#clock-rdonline').text(gameTime.toLocaleString(Settings.language, clockFormat));
   $('#clock-rdonline-beta').text(gameTime.toLocaleString(Settings.language, clockFormat));
   $('#top-clock-rdonline').text(gameTime.toLocaleString(Settings.language, clockFormat));
   $('#clock-large').text(gameTime.toLocaleString(Settings.language, clockFormat));
-    
-  $('#day-cycle').removeClass('hidden').attr('src', `./assets/images/side-menu/${nightTime ? 'moon-18' : 'sun-18'}.png`);
-	
-    const cyclesResetTime = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1);
-	const dailiesResetTime = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1);
-	const cyclesDelta = new Date(cyclesResetTime - now);
-	const dailiesDelta = new Date(dailiesResetTime - now);
-	dailiesDelta.setUTCHours(dailiesDelta.getUTCHours() + 6);
-	const deltaFormat = {
-		timeZone: 'UTC',
-		hour: '2-digit',
-		minute: '2-digit',
-		second: '2-digit',
-	    hourCycle:'h23'
-	};
-	
-	const deltaFormatHour = {timeZone: 'UTC',hour: '2-digit',hourCycle:'h23'};
-	const deltaFormatMinute = {timeZone: 'UTC',minute: '2-digit',hourCycle:'h23'};
-	const deltaFormatSecond = {timeZone: 'UTC',second: '2-digit',hourCycle:'h23'};
-	
-	$('#cycles-reset-timer').text(cyclesDelta.toLocaleString([], deltaFormat));  	
-	$('#cycles-timer-hour').text(cyclesDelta.toLocaleString([], deltaFormatHour));	
-	$('#cycles-timer-minute').text(cyclesDelta.toLocaleString([], deltaFormatMinute));	
-	$('#cycles-timer-second').text(cyclesDelta.toLocaleString([], deltaFormatSecond)); 	
-	
-	$('#dailies-reset-timer').text(dailiesDelta.toLocaleString([], deltaFormat));	
-	$('#dailies-timer-hour').text(dailiesDelta.toLocaleString([], deltaFormatHour));	
-	$('#dailies-timer-minute').text(dailiesDelta.toLocaleString([], deltaFormatMinute));	
-	$('#dailies-timer-second').text(dailiesDelta.toLocaleString([], deltaFormatSecond));  	
+
+  const cyclesResetTime = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1);
+  const dailiesResetTime = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1);
+  const cyclesDelta = new Date(cyclesResetTime - now);
+  const dailiesDelta = new Date(dailiesResetTime - now);
+  dailiesDelta.setUTCHours(dailiesDelta.getUTCHours() + 6);
+  const deltaFormat = {
+    timeZone: 'UTC',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hourCycle: 'h23'
+  };
+
+  const deltaFormatHour = {
+    timeZone: 'UTC',
+    hour: '2-digit',
+    hourCycle: 'h23'
+  };
+  const deltaFormatMinute = {
+    timeZone: 'UTC',
+    minute: '2-digit',
+    hourCycle: 'h23'
+  };
+  const deltaFormatSecond = {
+    timeZone: 'UTC',
+    second: '2-digit',
+    hourCycle: 'h23'
+  };
+
+  $('#cycles-reset-timer').text(cyclesDelta.toLocaleString([], deltaFormat));
+  $('#cycles-timer-hour').text(cyclesDelta.toLocaleString([], deltaFormatHour));
+  $('#cycles-timer-minute').text(cyclesDelta.toLocaleString([], deltaFormatMinute));
+  $('#cycles-timer-second').text(cyclesDelta.toLocaleString([], deltaFormatSecond));
+
+  $('#dailies-reset-timer').text(dailiesDelta.toLocaleString([], deltaFormat));
+  $('#dailies-timer-hour').text(dailiesDelta.toLocaleString([], deltaFormatHour));
+  $('#dailies-timer-minute').text(dailiesDelta.toLocaleString([], deltaFormatMinute));
+  $('#dailies-timer-second').text(dailiesDelta.toLocaleString([], deltaFormatSecond));
 
 }
 
@@ -137,74 +136,110 @@ function clockTick() {
 setInterval(clockTick, 1000);
 
 setInterval(() => {
-	const now = new Date();
-	
-	const resetTimerFormat = {
-		timeZone: 'UTC',
-		hour: '2-digit',
-		minute: '2-digit'
-	};
-	
-	const moonshineBuyersReset = (() => {
-		const todayDayMs = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())).valueOf();
-        const timeFromReset = (now.valueOf() - todayDayMs) / 60000;
-        const timeToReset = Math.ceil(96 - (timeFromReset % 96));
-		const timeToMoonshinerReset = new Date(now.setUTCMinutes(now.getUTCMinutes() + timeToReset));
-		const timeToNaturalistReset = new Date(now.setUTCMinutes(now.getUTCMinutes() + timeToReset));
-        //document.querySelector('#moonshiner-reset-timer').innerHTML = timeToReset + " minutes";
-		
-		const timeNow = new Date();
-		
-		const moonshinerResetTime = Date.UTC(timeToMoonshinerReset.getUTCFullYear(), timeToMoonshinerReset.getUTCMonth(), timeToMoonshinerReset.getUTCDate(), timeToMoonshinerReset.getUTCHours(), timeToMoonshinerReset.getUTCMinutes() + 0);
-		
-		const moonshinerDelta = new Date(moonshinerResetTime - timeNow);
-	
-		moonshinerDelta.setUTCSeconds(moonshinerDelta.getUTCSeconds() + 5);
-		
-		const moonshinerDeltaFormat = {timeZone: 'UTC',hour: '2-digit',minute: '2-digit',second: '2-digit',hourCycle:'h23'};
-		const moonshinerDeltaHour = {timeZone: 'UTC',hour: '2-digit',hourCycle:'h23'};
-		const moonshinerDeltaMinute = {timeZone: 'UTC',minute: '2-digit',hourCycle:'h23'};
-		const moonshinerDeltaSecond = {timeZone: 'UTC',second: '2-digit',hourCycle:'h23'};
-		
-		const timeNow2 = new Date();
-		timeNow2.setUTCHours(timeNow2.getUTCHours() - 1);
-		
-		const naturalistResetTime = Date.UTC(timeToNaturalistReset.getUTCFullYear(), timeToNaturalistReset.getUTCMonth(), timeToNaturalistReset.getUTCDate(), timeToNaturalistReset.getUTCHours(), timeToNaturalistReset.getUTCMinutes() + 0);
-		
-		const naturalistDelta = new Date(naturalistResetTime - timeNow);
-		const naturalistTime = new Date(naturalistResetTime - timeNow2);
-		
-		const moonshinerDelta2 = new Date(moonshinerResetTime - timeNow);
-		//moonshinerDelta2.setUTCSeconds(moonshinerDelta2.getUTCSeconds() + 1464);
-		moonshinerDelta2.setUTCMinutes(moonshinerDelta2.getUTCMinutes() + 13.95);
-	
-		//naturalistDelta.setUTCMinutes(naturalistDelta.getUTCMinutes() - 48);
-		//naturalistDelta.setUTCSeconds(naturalistDelta.getUTCSeconds() + 5);
-		
-		const naturalistDeltaFormat = {timeZone: 'UTC',hour: '2-digit',minute: '2-digit',second: '2-digit',hourCycle:'h23'};
-		const naturalistDeltaHour = {timeZone: 'UTC',hour: '2-digit',hourCycle:'h23'};
-		const naturalistDeltaMinute = {timeZone: 'UTC',minute: '2-digit',hourCycle:'h23'};
-		const naturalistDeltaSecond = {timeZone: 'UTC',second: '2-digit',hourCycle:'h23'};
-		
-		$('#moonshiner-time').text(timeNow.toLocaleString([], resetTimerFormat)); 
-		$('#moonshiner-reset-time').text(timeToMoonshinerReset.toLocaleString([], resetTimerFormat)); 
-		//$('#moonshiner-timer').text(moonshinerDelta);
-		$('#moonshiner-timer').text(moonshinerDelta.toLocaleString([], moonshinerDeltaFormat)); 
-		$('#moonshiner-timer-hour').text(moonshinerDelta.toLocaleString([], moonshinerDeltaHour)); 
-		$('#moonshiner-timer-minute').text(moonshinerDelta.toLocaleString([], moonshinerDeltaMinute)); 
-		$('#moonshiner-timer-second').text(moonshinerDelta.toLocaleString([], moonshinerDeltaSecond));
-		
-		$('#naturalist-time').text(timeNow.toLocaleString([], resetTimerFormat)); 
-		$('#naturalist-time2').text(timeNow2.toLocaleString([], naturalistDeltaFormat)); 
-		$('#naturalist-reset-time').text(timeToNaturalistReset.toLocaleString([], resetTimerFormat)); 
-		$('#naturalist-reset-time2').text(naturalistTime.toLocaleString([], resetTimerFormat)); 
-		//$('#moonshiner-timer').text(moonshinerDelta2);
-		$('#naturalist-timer').text(naturalistDelta.toLocaleString([], naturalistDeltaFormat)); 
-		$('#naturalist-timer-hour').text(moonshinerDelta2.toLocaleString([], naturalistDeltaHour)); 
-		$('#naturalist-timer-minute').text(moonshinerDelta2.toLocaleString([], naturalistDeltaMinute)); 
-		$('#naturalist-timer-second').text(moonshinerDelta2.toLocaleString([], naturalistDeltaSecond));		
-	})();
-},1000);
+  const now = new Date();
+  const todayDayMs = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())).valueOf();
+  const timeFromReset = (now.valueOf() - todayDayMs) / 60000;
+  const timeToReset = Math.ceil(96 - (timeFromReset % 96));
+  const timeToMoonshinerReset = new Date(now.setUTCMinutes(now.getUTCMinutes() + timeToReset));
+  const timeToNaturalistReset = new Date(now.setUTCMinutes(now.getUTCMinutes() + timeToReset));
+  //document.querySelector('#moonshiner-reset-timer').innerHTML = timeToReset + " minutes";
+
+  const moonshinerResetTime =
+    Date.UTC(timeToMoonshinerReset.getUTCFullYear(),
+      timeToMoonshinerReset.getUTCMonth(),
+      timeToMoonshinerReset.getUTCDate(),
+      timeToMoonshinerReset.getUTCHours(),
+      timeToMoonshinerReset.getUTCMinutes() + 0
+    );
+
+  const moonshinerDelta = new Date(moonshinerResetTime - now);
+
+  moonshinerDelta.setUTCSeconds(moonshinerDelta.getUTCSeconds() + 5);
+
+  const moonshinerDeltaFormat = {
+    timeZone: 'UTC',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hourCycle: 'h23'
+  };
+  const moonshinerDeltaHour = {
+    timeZone: 'UTC',
+    hour: '2-digit',
+    hourCycle: 'h23'
+  };
+  const moonshinerDeltaMinute = {
+    timeZone: 'UTC',
+    minute: '2-digit',
+    hourCycle: 'h23'
+  };
+  const moonshinerDeltaSecond = {
+    timeZone: 'UTC',
+    second: '2-digit',
+    hourCycle: 'h23'
+  };
+
+  const timeNow2 = new Date();
+  timeNow2.setUTCHours(timeNow2.getUTCHours() - 1);
+
+  const naturalistResetTime = Date.UTC(timeToNaturalistReset.getUTCFullYear(), timeToNaturalistReset.getUTCMonth(), timeToNaturalistReset.getUTCDate(), timeToNaturalistReset.getUTCHours(), timeToNaturalistReset.getUTCMinutes() + 0);
+
+  const naturalistDelta = new Date(naturalistResetTime - timeNow);
+  const naturalistTime = new Date(naturalistResetTime - timeNow2);
+
+  const moonshinerDelta2 = new Date(moonshinerResetTime - timeNow);
+  //moonshinerDelta2.setUTCSeconds(moonshinerDelta2.getUTCSeconds() + 1464);
+  moonshinerDelta2.setUTCMinutes(moonshinerDelta2.getUTCMinutes() + 13.95);
+
+  //naturalistDelta.setUTCMinutes(naturalistDelta.getUTCMinutes() - 48);
+  //naturalistDelta.setUTCSeconds(naturalistDelta.getUTCSeconds() + 5);
+
+  const naturalistDeltaFormat = {
+    timeZone: 'UTC',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hourCycle: 'h23'
+  };
+  const naturalistDeltaHour = {
+    timeZone: 'UTC',
+    hour: '2-digit',
+    hourCycle: 'h23'
+  };
+  const naturalistDeltaMinute = {
+    timeZone: 'UTC',
+    minute: '2-digit',
+    hourCycle: 'h23'
+  };
+  const naturalistDeltaSecond = {
+    timeZone: 'UTC',
+    second: '2-digit',
+    hourCycle: 'h23'
+  };
+  const resetTimerFormat = {
+    timeZone: 'UTC',
+    hour: '2-digit',
+    minute: '2-digit'
+  }
+
+  $('#moonshiner-time').text(timeNow.toLocaleString([], resetTimerFormat));
+  $('#moonshiner-reset-time').text(timeToMoonshinerReset.toLocaleString([], resetTimerFormat));
+  //$('#moonshiner-timer').text(moonshinerDelta);
+  $('#moonshiner-timer').text(moonshinerDelta.toLocaleString([], moonshinerDeltaFormat));
+  $('#moonshiner-timer-hour').text(moonshinerDelta.toLocaleString([], moonshinerDeltaHour));
+  $('#moonshiner-timer-minute').text(moonshinerDelta.toLocaleString([], moonshinerDeltaMinute));
+  $('#moonshiner-timer-second').text(moonshinerDelta.toLocaleString([], moonshinerDeltaSecond));
+
+  $('#naturalist-time').text(timeNow.toLocaleString([], resetTimerFormat));
+  $('#naturalist-time2').text(timeNow2.toLocaleString([], naturalistDeltaFormat));
+  $('#naturalist-reset-time').text(timeToNaturalistReset.toLocaleString([], resetTimerFormat));
+  $('#naturalist-reset-time2').text(naturalistTime.toLocaleString([], resetTimerFormat));
+  //$('#moonshiner-timer').text(moonshinerDelta2);
+  $('#naturalist-timer').text(naturalistDelta.toLocaleString([], naturalistDeltaFormat));
+  $('#naturalist-timer-hour').text(moonshinerDelta2.toLocaleString([], naturalistDeltaHour));
+  $('#naturalist-timer-minute').text(moonshinerDelta2.toLocaleString([], naturalistDeltaMinute));
+  $('#naturalist-timer-second').text(moonshinerDelta2.toLocaleString([], naturalistDeltaSecond));
+}, 1000);
 
 
 $("#show-general-challenges").on("change", function () {

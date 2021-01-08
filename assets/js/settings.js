@@ -94,23 +94,15 @@ const SettingProxy = function () {
 // General settings
 const Settings = SettingProxy.createSettingProxy('main');
 Object.entries({
-  fmeDisplayGeneralPeriod: { default: 30 },
-  fmeDisplayRolePeriod: { default: 60 },
-  fmeEnabledGeneralEvents: { default: 511 },
-  fmeEnabledRoleEvents: { default: 31 },
-  fmeNotificationPeriod: { default: 10 },
-  isClock24Hour: { default: true },
   showGeneralChallenges: { default: true },
   showBountyChallenges: { default: true },
   showBountyHunterChallenges: { default: true },
   showCollectorChallenges: { default: true },
-  showMoonshinerChallenges: { default: true }, 
-  showNaturalistChallenges: { default: true }, 
-  showTraderChallenges: { default: true },  
-  showCompletedChallenges: { default: true }, 
-  showTimers: { default: true },  
-  showNazarLocation: { default: true }, 
-  showWeeklyCollection: { default: true }, 
-  
-  //topWidgetState: { default: 0 },
+  showMoonshinerChallenges: { default: true },
+  showNaturalistChallenges: { default: true },
+  showTraderChallenges: { default: true },
+  showCompletedChallenges: { default: true },
+  showTimers: { default: true },
+  showNazarLocation: { default: true },
+  showWeeklyCollection: { default: true },
 }).forEach(([name, config]) => SettingProxy.addSetting(Settings, name, config));
