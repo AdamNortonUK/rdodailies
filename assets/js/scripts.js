@@ -25,9 +25,6 @@ $(function () {
   try {
     init();
   } catch (e) {
-    if (getParameterByName('show-alert') == '1') {
-      alert(e);
-    }
     console.error(e);
   }
 });
@@ -74,7 +71,6 @@ function clockTick() {
   const now = new Date();
   const gameTime = new Date(now * 30);
   gameTime.setUTCMinutes(gameTime.getUTCMinutes() - 3);
-  const gameHour = gameTime.getUTCHours();
   const clockFormat = {
     timeZone: 'UTC',
     hour: '2-digit',
@@ -82,11 +78,8 @@ function clockTick() {
     hourCycle: 'h23'
   };
 
-  $('#clock').text(gameTime.toLocaleString(Settings.language, clockFormat));
-  $('#clock-rdonline').text(gameTime.toLocaleString(Settings.language, clockFormat));
-  $('#clock-rdonline-beta').text(gameTime.toLocaleString(Settings.language, clockFormat));
-  $('#top-clock-rdonline').text(gameTime.toLocaleString(Settings.language, clockFormat));
-  $('#clock-large').text(gameTime.toLocaleString(Settings.language, clockFormat));
+  $('#clock, #clock-rdonline, #clock-rdonline-beta, #top-clock-rdonline, #clock-large')
+    .text(gameTime.toLocaleString(Settings.language, clockFormat));
 
   const cyclesResetTime = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1);
   const dailiesResetTime = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1);
@@ -149,7 +142,7 @@ setInterval(() => {
       timeToMoonshinerReset.getUTCMonth(),
       timeToMoonshinerReset.getUTCDate(),
       timeToMoonshinerReset.getUTCHours(),
-      timeToMoonshinerReset.getUTCMinutes() + 0
+      timeToMoonshinerReset.getUTCMinutes(),
     );
 
   const moonshinerDelta = new Date(moonshinerResetTime - now);
@@ -178,7 +171,7 @@ setInterval(() => {
     second: '2-digit',
     hourCycle: 'h23'
   };
-
+  const timeNow = new Date();
   const timeNow2 = new Date();
   timeNow2.setUTCHours(timeNow2.getUTCHours() - 1);
 

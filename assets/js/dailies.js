@@ -33,16 +33,18 @@ function initDailiesLogic() {
 
   $('.general-challenge-input-checkbox, .challenge-input-checkbox').on('click', function () {
     var GeneralChecked = 0;
-    $.each($('.general-challenge-input-checkbox'), function () {
+    var generalChallenges = $('.general-challenge-input-checkbox');
+    $.each(generalChallenges, function () {
       GeneralChecked += +$(this).prop('checked');
     });
-    $('.challenge-input-checkbox-general').prop('checked', GeneralChecked >= 7);
+    $('.challenge-input-checkbox-general').prop('checked', GeneralChecked >= [...generalChallenges].length);
 
     var RolesChecked = 0;
-    $.each($('.challenge-input-checkbox'), function () {
+    var roleChallenges = $('.challenge-input-checkbox');
+    $.each(roleChallenges, function () {
       RolesChecked += +$(this).prop('checked');
     });
-    $('.challenge-input-checkbox-roles').prop('checked', RolesChecked >= 15);
+    $('.challenge-input-checkbox-roles').prop('checked', RolesChecked >= [...roleChallenges].length);
   });
 
   $(':checkbox').on('change', function () {
@@ -102,7 +104,7 @@ function DailyChallengesGoldCounter() {
   var DailyChallengesGoldCount = (GeneralChallengesGoldCount + RolesChallengesGoldCount);
   var RoleChallengesCompletedGoldCount = $(`input[class='challenge-input-checkbox-roles']:checked`).length;
   var GeneralChallengesCompletedGoldCount = $(`input[class='challenge-input-checkbox-general']:checked`).length;
-  var DailyChallengesGoldMultiplerValue = $('#DailyChallengesGoldMultipler');
+  var DailyChallengesGoldMultiplerValue = $('#DailyChallengesGoldMultipler')[0];
   var DailyChallengesGoldValue = DailyChallengesGoldMultiplerValue.options[DailyChallengesGoldMultiplerValue.selectedIndex].value;
   var DailyRoleChallengesGold = DailyChallengesGoldValue * RoleChallengesCompletedGoldCount * 3;
   var DailyGeneralChallengesGold = DailyChallengesGoldValue * GeneralChallengesCompletedGoldCount * 3;
