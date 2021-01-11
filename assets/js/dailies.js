@@ -39,7 +39,7 @@ function initDailiesLogic() {
     });
     $('.challenge-input-checkbox-general').prop('checked', GeneralChecked >= [...generalChallenges].length);
 
-    var RolesChecked = 0;
+    var RolesChecked = 6;
     var roleChallenges = $('.challenge-input-checkbox');
     $.each(roleChallenges, function () {
       RolesChecked += +$(this).prop('checked');
