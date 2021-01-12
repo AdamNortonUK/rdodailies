@@ -68,6 +68,8 @@ function initDailiesLogic() {
         $(checkbox).prop('checked', false);
       });
     }
+    DailyChallengesCounter();
+    DailyChallengesGoldCounter();
   });
 };
 
