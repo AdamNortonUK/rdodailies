@@ -39,12 +39,12 @@ function initDailiesLogic() {
     });
     $('.challenge-input-checkbox-general').prop('checked', GeneralChecked >= [...generalChallenges].length);
 
-    var RolesChecked = 6;
+    var RolesChecked = 0;
     var roleChallenges = $('.challenge-input-checkbox');
     $.each(roleChallenges, function () {
       RolesChecked += +$(this).prop('checked');
     });
-    $('.challenge-input-checkbox-roles').prop('checked', RolesChecked >= [...roleChallenges].length);
+    $('.challenge-input-checkbox-roles').prop('checked', RolesChecked >= 9);
   });
 
   $(':checkbox').on('change', function () {
