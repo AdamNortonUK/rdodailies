@@ -19,7 +19,7 @@
   <link rel="shortcut icon" href="./favicon.ico">
   <meta name="msapplication-TileColor" content="000000">
   <meta name="theme-color" content="#000000">
-<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics 
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171695182-3"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -28,3 +28,4 @@
 
   gtag('config', 'UA-171695182-3');
 </script>
+-->
