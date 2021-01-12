@@ -51,6 +51,24 @@ function initDailiesLogic() {
     DailyChallengesCounter();
     DailyChallengesGoldCounter();
   }).triggerHandler('change');
+
+  $('.reset-dailies button').on('click', function (event) {
+    if (event.target.id === 'all-dailies') {
+      [...$(':checkbox')].forEach(function (checkbox) {
+        $(checkbox).prop('checked', false);
+      });
+    }
+    if (event.target.id === 'general-dailies') {
+      [...$('.general-challenge-input-checkbox')].forEach(function (checkbox) {
+        $(checkbox).prop('checked', false);
+      });
+    }
+    if (event.target.id === 'role-dailies') {
+      [...$('.challenge-input-checkbox')].forEach(function (checkbox) {
+        $(checkbox).prop('checked', false);
+      });
+    }
+  });
 };
 
 function DailyChallengesCounter() {
