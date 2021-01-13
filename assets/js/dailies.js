@@ -13,7 +13,8 @@ function initDailiesLogic() {
       input.value = goldMultiplier; // set the value
 
   input.on('change', function () {
-      localStorage.setItem('DailyChallengesGoldMultipler', this.value); // change localStorage on change
+    localStorage.setItem('DailyChallengesGoldMultipler', this.value); // change localStorage on change
+    DailyChallengesGoldCounter();
   });
 
   var checkboxValue = JSON.parse(localStorage.getItem('checkboxValue')) || {};
