@@ -1,5 +1,5 @@
 <?php
-$version = $nocache"4.5.0";
+$version = $nocache = "4.5.0";
 
 $bootstrap = "3.4.1";
 
