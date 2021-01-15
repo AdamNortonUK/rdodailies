@@ -83,9 +83,9 @@ const SettingProxy = function () {
     addListener: function (settingProxy, names, callback) {
       const proxyConfig = settingProxy[_proxyConfig];
       names.split(' ').forEach(name => {
-        settingHandler.
-          _checkAndGetSettingConfig(proxyConfig, name, ReferenceError)
-          .listeners.push(callback)
+        settingHandler
+          ._checkAndGetSettingConfig(proxyConfig, name, ReferenceError)
+          .listeners.push(callback);
       });
       return callback;
     },
