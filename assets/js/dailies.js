@@ -8,22 +8,12 @@ $(function () {
 
 function initDailiesLogic() {
   var input = $('#DailyChallengesGoldMultipler');
-  var goldMultiplier = localStorage.getItem('DailyChallengesGoldMultipler');
-  if (goldMultiplier) // if job is set
-    input.value = goldMultiplier; // set the value
-  else
-    localStorage.setItem('DailyChallengesGoldMultipler', '0.1');
-
-  alert(`
-    input: ${$('#DailyChallengesGoldMultipler').html()}\n
-    localStorage: ${goldMultiplier}\n
-    input value: ${input.value}\n
-  `);
+  input.value = Settings.DailyChallengesGoldMultipler;
 
   input.on('change', function () {
-    localStorage.setItem('DailyChallengesGoldMultipler', this.value); // change localStorage on change
-    DailyChallengesGoldCounter();
+    Settings.DailyChallengesGoldMultipler = this.value; // change localStorage on change
   });
+  SettingProxy.addListener(Settings, 'DailyChallengesGoldMultipler', DailyChallengesGoldCounter);
 
   var checkboxValue = JSON.parse(localStorage.getItem('checkboxValue')) || {};
   var $checkbox = $('.challenge-input-container :checkbox');

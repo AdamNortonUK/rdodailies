@@ -83,7 +83,8 @@ const SettingProxy = function () {
     addListener: function (settingProxy, names, callback) {
       const proxyConfig = settingProxy[_proxyConfig];
       names.split(' ').forEach(name => {
-        settingHandler._checkAndGetSettingConfig(proxyConfig, name, ReferenceError)
+        settingHandler.
+          _checkAndGetSettingConfig(proxyConfig, name, ReferenceError)
           .listeners.push(callback)
       });
       return callback;
@@ -105,4 +106,5 @@ Object.entries({
   showTimers: { default: true },
   showNazarLocation: { default: true },
   showWeeklyCollection: { default: true },
+  DailyChallengesGoldMultipler: { default: "0.10" }, // it should start from small letter but it is temporary to make it backward compatible
 }).forEach(([name, config]) => SettingProxy.addSetting(Settings, name, config));
