@@ -67,6 +67,7 @@ function initDailiesLogic() {
         $(checkbox).prop('checked', false);
       });
     }
+    $checkbox.triggerHandler('change');
     DailyChallengesCounter();
     DailyChallengesGoldCounter();
   });
