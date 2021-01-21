@@ -95,6 +95,7 @@ const SettingProxy = function () {
 // General settings
 const Settings = SettingProxy.createSettingProxy('main');
 Object.entries({
+  language: { default: 'en' },
   showGeneralChallenges: { default: true },
   showBountyChallenges: { default: true },
   showBountyHunterChallenges: { default: true },

@@ -1,40 +1,13 @@
-jQuery.fn.translate = function () {
-  return Language.translateDom(this);
-};
-
-var Language = {
-  data: {},
-  availableLanguages: ['en'],
-
-  init: function () {
-    'use strict';
-    let langs = ['en'];
-
-    if (Settings.language !== 'en') {
-      langs.push(Settings.language);
-    }
-  },
-};
-/*
-- DOM will be ready, all scripts will be loaded (all loaded via DOM script elements)
-- everything in this file here will be executed
-- they can depend on their order here
-- unfortunately some async dependencies are not properly taken care of (yet)
-*/
 $(function () {
   try {
     init();
   } catch (e) {
+    alert(e);
     console.error(e);
   }
 });
 
 function init() {
-  const navLang = navigator.language;
-  SettingProxy.addSetting(Settings, 'language', {
-    default: Language.availableLanguages.includes(navLang) ? navLang : 'en',
-  });
-
   $("#show-general-challenges").prop('checked', Settings.showGeneralChallenges);
   $("#show-bounty-challenges").prop('checked', Settings.showBountyChallenges);
   $("#show-bounty-hunter-challenges").prop('checked', Settings.showBountyHunterChallenges);
@@ -59,11 +32,6 @@ function init() {
   $("#nazar-location-container").toggleClass('opened', Settings.showNazarLocation);
   $("#weekly-collection-container").toggleClass('opened', Settings.showWeeklyCollection);
 
-  //updateTopWidget();
-}
-
-function isLocalHost() {
-  return location.hostname === "localhost" || location.hostname === "127.0.0.1";
 }
 
 function clockTick() {
@@ -71,6 +39,10 @@ function clockTick() {
   const now = new Date();
   const gameTime = new Date(now * 30);
   gameTime.setUTCMinutes(gameTime.getUTCMinutes() - 3);
+  const realTime = new Date(now.setUTCHours(now.getUTCHours() + 0));
+  const gameHour = gameTime.getUTCHours();
+  const realHour = realTime.getUTCHours();
+  const nightTime = gameHour >= 22 || gameHour < 5;
   const clockFormat = {
     timeZone: 'UTC',
     hour: '2-digit',
@@ -120,16 +92,12 @@ function clockTick() {
   $('#dailies-timer-minute').text(dailiesDelta.toLocaleString([], deltaFormatMinute));
   $('#dailies-timer-second').text(dailiesDelta.toLocaleString([], deltaFormatSecond));
 
-}
+  const resetTimerFormat = {
+    timeZone: 'UTC',
+    hour: '2-digit',
+    minute: '2-digit'
+  };
 
-/*
-- clockTick() relies on DOM and jquery
-- guaranteed only by this scriptâ€™s position at end of index.html
-*/
-setInterval(clockTick, 1000);
-
-setInterval(() => {
-  const now = new Date();
   const todayDayMs = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())).valueOf();
   const timeFromReset = (now.valueOf() - todayDayMs) / 60000;
   const timeToReset = Math.ceil(96 - (timeFromReset % 96));
@@ -137,15 +105,17 @@ setInterval(() => {
   const timeToNaturalistReset = new Date(now.setUTCMinutes(now.getUTCMinutes() + timeToReset));
   //document.querySelector('#moonshiner-reset-timer').innerHTML = timeToReset + " minutes";
 
-  const moonshinerResetTime =
-    Date.UTC(timeToMoonshinerReset.getUTCFullYear(),
-      timeToMoonshinerReset.getUTCMonth(),
-      timeToMoonshinerReset.getUTCDate(),
-      timeToMoonshinerReset.getUTCHours(),
-      timeToMoonshinerReset.getUTCMinutes(),
-    );
+  const timeNow = new Date();
 
-  const moonshinerDelta = new Date(moonshinerResetTime - now);
+  const moonshinerResetTime = Date.UTC(
+    timeToMoonshinerReset.getUTCFullYear(),
+    timeToMoonshinerReset.getUTCMonth(),
+    timeToMoonshinerReset.getUTCDate(),
+    timeToMoonshinerReset.getUTCHours(),
+    timeToMoonshinerReset.getUTCMinutes()
+  );
+
+  const moonshinerDelta = new Date(moonshinerResetTime - timeNow);
 
   moonshinerDelta.setUTCSeconds(moonshinerDelta.getUTCSeconds() + 5);
 
@@ -171,19 +141,21 @@ setInterval(() => {
     second: '2-digit',
     hourCycle: 'h23'
   };
-  const timeNow = new Date();
+
   const timeNow2 = new Date();
   timeNow2.setUTCHours(timeNow2.getUTCHours() - 1);
-
-  const naturalistResetTime = Date.UTC(timeToNaturalistReset.getUTCFullYear(), timeToNaturalistReset.getUTCMonth(), timeToNaturalistReset.getUTCDate(), timeToNaturalistReset.getUTCHours(), timeToNaturalistReset.getUTCMinutes() + 0);
-
+  const naturalistResetTime = Date.UTC(
+    timeToNaturalistReset.getUTCFullYear(),
+    timeToNaturalistReset.getUTCMonth(),
+    timeToNaturalistReset.getUTCDate(),
+    timeToNaturalistReset.getUTCHours(),
+    timeToNaturalistReset.getUTCMinutes()
+  );
   const naturalistDelta = new Date(naturalistResetTime - timeNow);
   const naturalistTime = new Date(naturalistResetTime - timeNow2);
-
   const moonshinerDelta2 = new Date(moonshinerResetTime - timeNow);
   //moonshinerDelta2.setUTCSeconds(moonshinerDelta2.getUTCSeconds() + 1464);
   moonshinerDelta2.setUTCMinutes(moonshinerDelta2.getUTCMinutes() + 13.95);
-
   //naturalistDelta.setUTCMinutes(naturalistDelta.getUTCMinutes() - 48);
   //naturalistDelta.setUTCSeconds(naturalistDelta.getUTCSeconds() + 5);
 
@@ -209,11 +181,6 @@ setInterval(() => {
     second: '2-digit',
     hourCycle: 'h23'
   };
-  const resetTimerFormat = {
-    timeZone: 'UTC',
-    hour: '2-digit',
-    minute: '2-digit'
-  }
 
   $('#moonshiner-time').text(timeNow.toLocaleString([], resetTimerFormat));
   $('#moonshiner-reset-time').text(timeToMoonshinerReset.toLocaleString([], resetTimerFormat));
@@ -232,14 +199,18 @@ setInterval(() => {
   $('#naturalist-timer-hour').text(moonshinerDelta2.toLocaleString([], naturalistDeltaHour));
   $('#naturalist-timer-minute').text(moonshinerDelta2.toLocaleString([], naturalistDeltaMinute));
   $('#naturalist-timer-second').text(moonshinerDelta2.toLocaleString([], naturalistDeltaSecond));
-}, 1000);
+}
 
+/*
+- clockTick() relies on DOM and jquery
+- guaranteed only by this scriptâ€™s position at end of index.html
+*/
+setInterval(clockTick, 1000);
 
 $("#show-general-challenges").on("change", function () {
   Settings.showGeneralChallenges = $("#show-general-challenges").prop('checked');
   $("#general-challenges-container").toggleClass('opened', Settings.showGeneralChallenges);
 });
-
 
 $("#show-bounty-hunter-challenges").on("change", function () {
   Settings.showBountyHunterChallenges = $("#show-bounty-hunter-challenges").prop('checked');
