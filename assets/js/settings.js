@@ -1,4 +1,4 @@
-const SettingProxy = function () {
+const SettingProxy = (function () {
   'use strict';
   const _domain = Symbol('domain');
   const _proxyConfig = Symbol('proxyConfig');
@@ -82,7 +82,8 @@ const SettingProxy = function () {
     },
     addListener: function (settingProxy, names, callback) {
       const proxyConfig = settingProxy[_proxyConfig];
-      names.split(' ').forEach(name => {
+      names = Array.isArray(names) ? names : names.split(' ');
+      names.forEach(name => {
         settingHandler
           ._checkAndGetSettingConfig(proxyConfig, name, ReferenceError)
           .listeners.push(callback);
@@ -90,7 +91,7 @@ const SettingProxy = function () {
       return callback;
     },
   };
-}();
+})();
 
 // General settings
 const Settings = SettingProxy.createSettingProxy('main');
