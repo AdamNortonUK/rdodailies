@@ -14,14 +14,11 @@ $tomorrow = DateTime::createFromFormat('Y-m-d',$DailyChallengesPageDate);
 $tomorrow->modify('+1 day');
 $NazarDate = DateTime::createFromFormat('Y-m-d',$DailyChallengesPageDate);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/css/styles.css">
   <title>Daily Challenges - <?php echo $titleDate->format("F d"); ?></title>
   <?php require_once 'assets/inc/meta.php' ?>
 </head>
@@ -38,7 +35,9 @@ $NazarDate = DateTime::createFromFormat('Y-m-d',$DailyChallengesPageDate);
         <img id="challenges-header-right" src="./assets/images/header_bg_right.png" alt="">
       </h2>
     </a>
+
     <div class="widgets">
+
       <span class="daily-challenge-widgets-date-selection">
         <? if ("2020-10-14" == "$DailyChallengesPageDate") { ?><span
           class="daily-challenges-date-selection-left">&nbsp;</span>
@@ -46,7 +45,9 @@ $NazarDate = DateTime::createFromFormat('Y-m-d',$DailyChallengesPageDate);
             href="?date=<?php echo $yesterday->format('Y-m-d'); ?>"><img class="date-selection-arrow"
               src="assets/images/selection_left.png" alt="arrow"></a></span>
         <? } ?>
+
         <span class="daily-challenges-date-selection"><?php echo $DailyChallengesDate; ?></span>
+
         <? if ($currentDailyChallengesDate == "$DailyChallengesPageDate") { ?>
         <span class="daily-challenges-date-selection-right">&nbsp;</span>
         <? } else { ?><span class="daily-challenges-date-selection-right"><a
@@ -54,15 +55,23 @@ $NazarDate = DateTime::createFromFormat('Y-m-d',$DailyChallengesPageDate);
               src="assets/images/selection_right.png" alt="arrow"></a></span>
         <? } ?>
       </span>
+
       <span class="clock-rdonline" id="clock-rdonline"></span>
+
+
+
       <span class="daily-challenges-gold-counter">
         <img class="daily-challenges-gold-icon" src="/assets/images/daily-challenge-icons/challenge_gold.png">
       </span>
+
       <span class="daily-challenges-gold" id="daily-challenges-gold"></span>
+
+
       <span class="daily-challenges-counter">
         <img class="daily-challenges-counter-icon"
           src="/assets/images/daily-challenge-icons/daily_challenge_toast_0.png" id="daily-challenges-counter-icon">
       </span>
+
     </div>
     <div class="reset-dailies">
       <button id="general-dailies">Reset general dailies</button>
@@ -71,36 +80,29 @@ $NazarDate = DateTime::createFromFormat('Y-m-d',$DailyChallengesPageDate);
     </div>
     <hr class="challenges-divider">
     <div style="padding-bottom:8px;"></div>
-    <div id="dailies-container">
-      <div class="settings-container">
-        <div class="dailies">
-          <div id="general" class="daily-role"></div>
-          <div id="trader" class="daily-role"></div>
-          <div id="collector" class="daily-role"></div>
-          <div id="bounty" class="daily-role"></div>
-          <div id="moonshiner" class="daily-role"></div>
-          <div id="naturalist" class="daily-role"></div>
-          <hr>
-        </div>
-      </div>
-    </div>
+    <?php require_once './assets/inc/dailies.php' ?>
+
     <?php require_once './assets/inc/dailies/dailies-nazar.php' ?>
+
     <?php require_once './assets/inc/dailies/dailies-weekly.php' ?>
+
     <?php require_once './assets/inc/gold-multiplier.php' ?>
+
     <div style="padding-bottom:6px;"></div>
+
     <a href="https://discord.gg/YDQyjTz7Gq"><img style="margin:10px 0px 0px 10px"
         src="/assets/images/discord-560.png" /></a>
 
     <div style="padding-bottom:6px;"></div>
-    <?php require_once './assets/inc/donate-form.php' ?>
-  </div>
 
-  <script src="assets/js/lib/jquery-3.4.1.min.js"></script>
-  <script src="assets/js/settings.js"></script>
-  <script src="assets/js/loader.js"></script>
-  <script src="assets/js/scripts.js"></script>
-  <script src="assets/js/dailies.js"></script>
-  <script src="assets/js/dailies_logic.js"></script>
+    <?php require_once './assets/inc/donate-form.php' ?>
+
+    <?php //require_once './assets/inc/discord-widget.php' ?>
+
+
+    <!--Daily Challenges Wrapper Close-->
+  </div>
+  <?php require_once 'assets/inc/footer.php' ?>
 </body>
 
 </html>

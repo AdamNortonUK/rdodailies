@@ -8,6 +8,8 @@ $(function () {
 });
 
 function init() {
+
+  Dailies.init();
   $("#show-general-challenges").prop('checked', Settings.showGeneralChallenges);
   $("#show-bounty-challenges").prop('checked', Settings.showBountyChallenges);
   $("#show-bounty-hunter-challenges").prop('checked', Settings.showBountyHunterChallenges);

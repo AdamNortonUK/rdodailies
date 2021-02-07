@@ -110,3 +110,6 @@ Object.entries({
   showWeeklyCollection: { default: true },
   DailyChallengesGoldMultipler: { default: "0.10" }, // it should start from small letter but it is temporary to make it backward compatible
 }).forEach(([name, config]) => SettingProxy.addSetting(Settings, name, config));
+
+// Completed daily challenges settings (file dailies.js)
+const DailyChallenges = SettingProxy.createSettingProxy('rdoDailies:');

@@ -1,137 +1,126 @@
-$(function () {
-  try {
-    initDailiesLogic();
-  } catch (e) {
-    console.error(e);
+class Dailies {
+  constructor(role, localized, target, challengeId) {
+    this.role = role;
+    this.localized = localized;
+    this.target = target;
+    this.challengeId = challengeId.toLowerCase();
   }
-});
+  static init() {
+    this.categories = [];
+    this.jsonData = [];
+    this.dailiesList = [];
+    this.markersCategories = [];
+    this.categoryOrder = [];
 
-function initDailiesLogic() {
-  var input = $('#DailyChallengesGoldMultipler');
-  input.value = Settings.DailyChallengesGoldMultipler;
+    [...$('.daily-role')].forEach(role => this.categoryOrder.push($(role)[0].id));
 
-  input.on('change', function () {
-    Settings.DailyChallengesGoldMultipler = this.value; // change localStorage on change
-  });
-  SettingProxy.addListener(Settings, 'DailyChallengesGoldMultipler', DailyChallengesGoldCounter);
+    const dailiesDate = new Date(Date.now() - 216e5).toISOUTCDateString();
+    const currentDailies = Loader.promises[`challenges-[${dailiesDate}]`].consumeJson(data => this.dailiesList = data);
 
-  var checkboxValue = JSON.parse(localStorage.getItem('checkboxValue')) || {};
-  var $checkbox = $('.challenge-input-container :checkbox');
-
-  $checkbox.on('change', function () {
-    $checkbox.each(function () {
-      checkboxValue[this.id] = !!this.checked;
-    });
-    localStorage.setItem('checkboxValue', JSON.stringify(checkboxValue));
-  });
-
-  //on page load
-  $.each(checkboxValue, function (key, value) {
-    $('#' + key).prop('checked', value);
-  });
-
-  $('.general-challenge-input-checkbox, .challenge-input-checkbox').on('click', function () {
-    var GeneralChecked = 0;
-    var generalChallenges = $('.general-challenge-input-checkbox');
-    $.each(generalChallenges, function () {
-      GeneralChecked += +$(this).prop('checked');
-    });
-    $('.challenge-input-checkbox-general').prop('checked', GeneralChecked >= [...generalChallenges].length);
-
-    var RolesChecked = 0;
-    var roleChallenges = $('.challenge-input-checkbox');
-    $.each(roleChallenges, function () {
-      RolesChecked += +$(this).prop('checked');
-    });
-    $('.challenge-input-checkbox-roles').prop('checked', RolesChecked >= 9);
-  });
-
-  $(':checkbox').on('change', function () {
-    DailyChallengesCounter();
-    DailyChallengesGoldCounter();
-  }).triggerHandler('change');
-
-  $('.reset-dailies button').on('click', function (event) {
-    if (event.target.id === 'all-dailies') {
-      [...$(':checkbox')].forEach(function (checkbox) {
-        $(checkbox).prop('checked', false);
+    return Promise.all([currentDailies])
+      .then(() => {
+        this.categoryOrder.forEach(category => {
+          $(`.dailies > #${category}`).append($(`<div class="role-name">${category.toUpperCase()}</div>`))
+          this.dailiesList[category].forEach(({ goal, daily, challenge }) => {
+            SettingProxy.addSetting(DailyChallenges, `${category}_${daily.toLowerCase()}`, {});
+            const newDaily = new Dailies(category, challenge, goal, daily);
+            newDaily.appendToMenu();
+          });
+          $(`.dailies > #${category}`).append($(`<div class="timers ${category}_timer"></div>`))
+        });
+        this.sortDailies();
+      })
+      .then(this.activateHandlers)
+      .catch(this.dailiesNotUpdated)
+      .then(this.getGold)
+      .then(DailyChallengesCounter)
+      .then(Loader.resolveContentLoaded);
+  }
+  appendToMenu() {
+    return $(`.dailies > #${this.role}`)
+      .append($(`
+          <div class="one-daily-container">
+            <span class="counter">${this.target}</span>
+            <label class="daily" for="checkbox-${this.role}-${this.challengeId}">${this.localized}</label>
+            <span class="daily-checkbox">
+              <div class="input-checkbox-wrapper">
+                <input class="input-checkbox" type="checkbox" name="checkbox-${this.role}-${this.challengeId}" value="0"
+                  id="checkbox-${this.role}-${this.challengeId}" />
+                <label class="input-checkbox-label" for="checkbox-${this.role}-${this.challengeId}"></label>
+              </div>
+            </span>
+          </div>
+        `))
+      .find('.one-daily-container')
+      .css('grid-template-areas', `"counter daily-challenge daily-checkbox"`)
+      .end()
+      .find(`#checkbox-${this.role}-${this.challengeId}`)
+      .prop('checked', DailyChallenges[`${this.role}_${this.challengeId}`])
+      .on('change', event => {
+        const checkbox = $(`#checkbox-${this.role}-${this.challengeId}`);
+        DailyChallenges[`${this.role}_${this.challengeId}`] = checkbox.prop('checked');
+        DailyChallengesCounter();
+        Dailies.getGold();
+      })
+      .end()
+      .triggerHandler('change');
+  }
+  static dailiesNotUpdated() {
+    $('.dailies').append($('<div class="daily-status not-found">Dailies not updated</div>'));
+  }
+  static sortDailies() {
+    const $roleContainers = $('.daily-role');
+    [...$roleContainers].forEach(roleContainer => {
+      const dailies = $(roleContainer).children('.one-daily-container');
+      const sortedDailies = [...dailies].sort((...args) => {
+        const [a, b] = args.map(dailyContainer =>
+          $(dailyContainer).find('label.daily').text().toLowerCase());
+        return a.localeCompare(b, Settings.language, { sensitivity: 'base' });
       });
-    }
-    if (event.target.id === 'general-dailies') {
-      [...$('.general-challenge-input-checkbox')].forEach(function (checkbox) {
-        $(checkbox).prop('checked', false);
-      });
-    }
-    if (event.target.id === 'role-dailies') {
-      [...$('.challenge-input-checkbox')].forEach(function (checkbox) {
-        $(checkbox).prop('checked', false);
-      });
-    }
-    $checkbox.triggerHandler('change');
-    DailyChallengesCounter();
-    DailyChallengesGoldCounter();
-  });
+      $(roleContainer).append(sortedDailies);
+    });
+  }
+  static activateHandlers() {
+    $('#DailyChallengesGoldMultipler').on('change', function () {
+      Settings.DailyChallengesGoldMultipler = this.value;
+    }).triggerHandler('change');
+
+    SettingProxy.addListener(Settings, 'DailyChallengesGoldMultipler', Dailies.getGold);
+
+    $('.reset-dailies button').on('click', event => {
+      if (event.target.id === 'all-dailies') {
+        [...$(':checkbox')].forEach(checkbox => {
+          $(checkbox).prop('checked', false).triggerHandler('change');
+        });
+      }
+      if (event.target.id === 'general-dailies') {
+        [...$(`.dailies > #general :checkbox`)].forEach(checkbox => {
+          $(checkbox).prop('checked', false).triggerHandler('change');
+        });
+      }
+      if (event.target.id === 'role-dailies') {
+        [...$(`.dailies > *:not(#general) :checkbox`)].forEach(checkbox => {
+          $(checkbox).prop('checked', false).triggerHandler('change');
+        });
+      }
+      DailyChallengesCounter();
+      Dailies.getGold();
+    });
+  }
+  static getGold() {
+    const generalChecked = $(`.dailies > #general :checkbox:checked`).length;
+    const roleChecked = $(`.dailies > *:not(#general) :checkbox:checked`).length;
+    const completed = generalChecked + roleChecked;
+    const value = (completed * $('#DailyChallengesGoldMultipler')[0].value).toFixed(2);
+
+    [...$(`.dailies > #general .one-daily-container`)].forEach(daily => {
+      $(daily).css('opacity', generalChecked >= 7 ? .3 : 1);
+    });
+    [...$(`.dailies > *:not(#general) .one-daily-container`)].forEach(daily => {
+      $(daily).css('opacity', roleChecked >= 9 ? .3 : 1);
+    });
+
+    $('#daily-challenges-gold').text(value);
+    return [generalChecked, roleChecked, value];
+  }
 };
-
-function DailyChallengesCounter() {
-  var DailyChallengesIcons = '/assets/images/daily-challenge-icons/';
-  var DailyChallengesCompleted = $("input[class='challenge-input-checkbox']:not(':checked')").length;
-  var DailyChallengesCompleted2 = $("input[class='general-challenge-input-checkbox']:not(':checked')").length;
-  var GeneralChallengesCompleted = $("input[name='GeneralChallenge']:not(':checked')").length;
-  var BountyChallengesCompleted = $("input[name='BountyChallenge']:not(':checked')").length;
-  var TraderChallengesCompleted = $("input[name='TraderChallenge']:not(':checked')").length;
-  var CollectorChallengesCompleted = $("input[name='CollectorChallenge']:not(':checked')").length;
-  var MoonshinerChallengesCompleted = $("input[name='MoonshinerChallenge']:not(':checked')").length;
-  var NaturalistChallengesCompleted = $("input[name='NaturalistChallenge']:not(':checked')").length;
-
-  var GeneralDailyChallengesCompleted = $("input[name='GeneralChallenge']:checked").length;
-
-  var BountyRoleChallengesCompleted = $("input[name='BountyChallenge']:checked").length;
-  var TraderRoleChallengesCompleted = $("input[name='TraderChallenge']:checked").length;
-  var CollectorRoleChallengesCompleted = $("input[name='CollectorChallenge']:checked").length;
-  var MoonshinerRoleChallengesCompleted = $("input[name='MoonshinerChallenge']:checked").length;
-  var NaturalistRoleChallengesCompleted = $("input[name='NaturalistChallenge']:checked").length;
-
-  var RoleDailyChallengesCompleted = BountyRoleChallengesCompleted + TraderRoleChallengesCompleted + CollectorRoleChallengesCompleted + MoonshinerRoleChallengesCompleted + NaturalistRoleChallengesCompleted;
-
-  $("#general-challenges-total").text(GeneralDailyChallengesCompleted);
-  $("#roles-challenges-total").text(RoleDailyChallengesCompleted);
-
-  var TotalChallengesCompleted = DailyChallengesCompleted + DailyChallengesCompleted2;
-
-  $("#daily-challenges-counter-icon").prop('src', `${DailyChallengesIcons}daily_challenge_toast_${TotalChallengesCompleted}.png`);
-  $("#daily-challenges-counter-widget-icon").prop('src', `${DailyChallengesIcons}daily_challenge_toast_${DailyChallengesCompleted}.png`);
-  $("#daily-challenges-counter-title-icon").prop('src', `${DailyChallengesIcons}daily_challenge_toast_${DailyChallengesCompleted}.png`);
-  $("#general-challenges-counter-icon").prop('src', `${DailyChallengesIcons}daily_challenge_toast_${GeneralChallengesCompleted}.png`);
-
-  $("#bounty-challenges-counter-icon").prop('src', `${DailyChallengesIcons}daily_challenge_toast_${BountyChallengesCompleted}.png`);
-  $("#trader-challenges-counter-icon").prop('src', `${DailyChallengesIcons}daily_challenge_toast_${TraderChallengesCompleted}.png`);
-  $("#collector-challenges-counter-icon").prop('src', `${DailyChallengesIcons}daily_challenge_toast_${CollectorChallengesCompleted}.png`);
-  $("#moonshiner-challenges-counter-icon").prop('src', `${DailyChallengesIcons}daily_challenge_toast_${MoonshinerChallengesCompleted}.png`);
-  $("#naturalist-challenges-counter-icon").prop('src', `${DailyChallengesIcons}daily_challenge_toast_${NaturalistChallengesCompleted}.png`);
-
-  $("#general-challenges-toggle").prop('class', 'daily-challenges-toggle' + GeneralChallengesCompleted + '-wrapper');
-  $("#bounty-challenges-toggle").prop('class', 'daily-challenges-toggle' + BountyChallengesCompleted + '-wrapper');
-  $("#trader-challenges-toggle").prop('class', 'daily-challenges-toggle' + TraderChallengesCompleted + '-wrapper');
-  $("#collector-challenges-toggle").prop('class', 'daily-challenges-toggle' + CollectorChallengesCompleted + '-wrapper');
-  $("#moonshiner-challenges-toggle").prop('class', 'daily-challenges-toggle' + MoonshinerChallengesCompleted + '-wrapper');
-  $("#naturalist-challenges-toggle").prop('class', 'daily-challenges-toggle' + NaturalistChallengesCompleted + '-wrapper');
-}
-
-function DailyChallengesGoldCounter() {
-  var GeneralChallengesGoldCount = $(`input[class='general-challenge-input-checkbox']:checked`).length;
-  var RolesChallengesGoldCount = $(`input[class='challenge-input-checkbox']:checked`).length;
-  var DailyChallengesGoldCount = (GeneralChallengesGoldCount + RolesChallengesGoldCount);
-  var RoleChallengesCompletedGoldCount = $(`input[class='challenge-input-checkbox-roles']:checked`).length;
-  var GeneralChallengesCompletedGoldCount = $(`input[class='challenge-input-checkbox-general']:checked`).length;
-  var DailyChallengesGoldMultiplerValue = $('#DailyChallengesGoldMultipler')[0];
-  var DailyChallengesGoldValue = DailyChallengesGoldMultiplerValue.options[DailyChallengesGoldMultiplerValue.selectedIndex].value;
-  var DailyRoleChallengesGold = DailyChallengesGoldValue * RoleChallengesCompletedGoldCount * 3;
-  var DailyGeneralChallengesGold = DailyChallengesGoldValue * GeneralChallengesCompletedGoldCount * 3;
-
-  //var DailyChallengesGold = DailyChallengesGoldValue * DailyChallengesGoldCount;
-  var DailyChallengesGoldTotal = DailyGeneralChallengesGold + DailyRoleChallengesGold;
-  var DailyChallengesGold = (DailyChallengesGoldTotal + DailyChallengesGoldValue * DailyChallengesGoldCount).toFixed(2);
-
-  $('#daily-challenges-gold').text(DailyChallengesGold);
-}
