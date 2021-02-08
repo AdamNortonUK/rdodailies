@@ -1,3 +1,5 @@
+var MIN_OPACITY = .3
+
 $(function () {
   try {
     initDailiesLogic();
@@ -31,19 +33,25 @@ function initDailiesLogic() {
   });
 
   $('.general-challenge-input-checkbox, .challenge-input-checkbox').on('click', function () {
-    var GeneralChecked = 0;
+    var generalChecked = 0;
     var generalChallenges = $('.general-challenge-input-checkbox');
     $.each(generalChallenges, function () {
-      GeneralChecked += +$(this).prop('checked');
+      generalChecked += +$(this).prop('checked');
     });
-    $('.challenge-input-checkbox-general').prop('checked', GeneralChecked >= [...generalChallenges].length);
+    $('.challenge-input-checkbox-general').prop('checked', generalChecked >= [...generalChallenges].length);
 
-    var RolesChecked = 0;
+    var rolesChecked = 0;
     var roleChallenges = $('.challenge-input-checkbox');
     $.each(roleChallenges, function () {
-      RolesChecked += +$(this).prop('checked');
+      rolesChecked += +$(this).prop('checked');
     });
-    $('.challenge-input-checkbox-roles').prop('checked', RolesChecked >= 9);
+    $('.challenge-input-checkbox-roles').prop('checked', rolesChecked >= 9);
+
+    [...$('.challenge-input-container:has(.general-challenge-input-checkbox)')]
+      .map(e => $(e).css('opacity', generalChecked < 7 ? 1 : MIN_OPACITY));
+
+    [...$('.challenge-input-container:has(.challenge-input-checkbox)')]
+      .map(e => $(e).css('opacity', rolesChecked < 9 ? 1 : MIN_OPACITY));
   });
 
   $(':checkbox').on('change', function () {
@@ -54,17 +62,17 @@ function initDailiesLogic() {
   $('.reset-dailies button').on('click', function (event) {
     if (event.target.id === 'all-dailies') {
       [...$(':checkbox')].forEach(function (checkbox) {
-        $(checkbox).prop('checked', false);
+        $(checkbox).prop('checked', false).triggerHandler('click');
       });
     }
     if (event.target.id === 'general-dailies') {
       [...$('.general-challenge-input-checkbox')].forEach(function (checkbox) {
-        $(checkbox).prop('checked', false);
+        $(checkbox).prop('checked', false).triggerHandler('click');
       });
     }
     if (event.target.id === 'role-dailies') {
       [...$('.challenge-input-checkbox')].forEach(function (checkbox) {
-        $(checkbox).prop('checked', false);
+        $(checkbox).prop('checked', false).triggerHandler('click');
       });
     }
     $checkbox.triggerHandler('change');
