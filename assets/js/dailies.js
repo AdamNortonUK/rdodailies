@@ -58,13 +58,13 @@ function initDailiesLogic() {
     [...$('.challenge-input-container:has(.challenge-input-checkbox)')].map(function (e) {
       $(e).css('opacity', rolesChecked < 9 ? 1 : MIN_OPACITY);
     });
-  });
+  }).triggerHandler('click');
 
   // update counters
   $(':checkbox').on('change', function () {
     DailyChallengesCounter();
     DailyChallengesGoldCounter();
-  }).triggerHandler('change');
+  }).triggerHandler('change')
 
 
   // reset dailies buttons
@@ -84,7 +84,6 @@ function initDailiesLogic() {
         $(checkbox).prop('checked', false).triggerHandler('click');
       });
     }
-    $checkbox.triggerHandler('change');
     DailyChallengesCounter();
     DailyChallengesGoldCounter();
   });

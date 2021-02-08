@@ -1,6 +1,5 @@
 async function fetchData(url) {
-	const queryString = { method: "GET", cache: "no-cache" };
-	queryString.nocache = Date.now();
+	const queryString = { method: "GET", cache: "no-cache", nocache: Date.now(), };
 	try {
 		const response = await fetch(url, queryString);
 		return await response.json();
