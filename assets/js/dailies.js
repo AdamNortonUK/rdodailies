@@ -11,10 +11,12 @@ $(function () {
 function initDailiesLogic() {
   var input = $('#DailyChallengesGoldMultipler');
   input.value = Settings.DailyChallengesGoldMultipler;
-
+  // set gold multiplier value
   input.on('change', function () {
-    Settings.DailyChallengesGoldMultipler = this.value; // change localStorage on change
+    Settings.DailyChallengesGoldMultipler = this.value;
   });
+
+  // listen for gold multiplier change and execute callback
   SettingProxy.addListener(Settings, 'DailyChallengesGoldMultipler', DailyChallengesGoldCounter);
 
   var checkboxValue = JSON.parse(localStorage.getItem('checkboxValue')) || {};
@@ -27,12 +29,13 @@ function initDailiesLogic() {
     localStorage.setItem('checkboxValue', JSON.stringify(checkboxValue));
   });
 
-  //on page load
+  // check checkboxes on page load
   $.each(checkboxValue, function (key, value) {
     $('#' + key).prop('checked', value);
   });
 
   $('.general-challenge-input-checkbox, .challenge-input-checkbox').on('click', function () {
+    // count completed dailies
     var generalChecked = 0;
     var generalChallenges = $('.general-challenge-input-checkbox');
     $.each(generalChallenges, function () {
@@ -47,18 +50,24 @@ function initDailiesLogic() {
     });
     $('.challenge-input-checkbox-roles').prop('checked', rolesChecked >= 9);
 
-    [...$('.challenge-input-container:has(.general-challenge-input-checkbox)')]
-      .map(e => $(e).css('opacity', generalChecked < 7 ? 1 : MIN_OPACITY));
+    // lower opacity completed set of dailies
+    [...$('.challenge-input-container:has(.general-challenge-input-checkbox)')].map(function (e) {
+      $(e).css('opacity', generalChecked < 7 ? 1 : MIN_OPACITY);
+    });
 
-    [...$('.challenge-input-container:has(.challenge-input-checkbox)')]
-      .map(e => $(e).css('opacity', rolesChecked < 9 ? 1 : MIN_OPACITY));
+    [...$('.challenge-input-container:has(.challenge-input-checkbox)')].map(function (e) {
+      $(e).css('opacity', rolesChecked < 9 ? 1 : MIN_OPACITY);
+    });
   });
 
+  // update counters
   $(':checkbox').on('change', function () {
     DailyChallengesCounter();
     DailyChallengesGoldCounter();
   }).triggerHandler('change');
 
+
+  // reset dailies buttons
   $('.reset-dailies button').on('click', function (event) {
     if (event.target.id === 'all-dailies') {
       [...$(':checkbox')].forEach(function (checkbox) {
